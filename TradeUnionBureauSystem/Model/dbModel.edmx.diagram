@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b16436c5f0aa4d5fbe80e27920f566bb" Name="Diagram1">
+        <EntityTypeShape EntityType="dbProfunionModel.Accommodation" Width="1.5" PointX="8.75" PointY="2.5" />
+        <EntityTypeShape EntityType="dbProfunionModel.Assistance" Width="1.5" PointX="10" PointY="8" />
+        <EntityTypeShape EntityType="dbProfunionModel.CheckIn" Width="1.5" PointX="11" PointY="1.875" />
+        <EntityTypeShape EntityType="dbProfunionModel.Commissions" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="dbProfunionModel.Events" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="dbProfunionModel.Members" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="dbProfunionModel.Months" Width="1.5" PointX="7.75" PointY="11.75" />
+        <EntityTypeShape EntityType="dbProfunionModel.PaymentCriteria" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="dbProfunionModel.Positions" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="dbProfunionModel.Roles" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbProfunionModel.UserRoles" Width="1.5" PointX="6" PointY="4.5" />
+        <EntityTypeShape EntityType="dbProfunionModel.Users" Width="1.5" PointX="0.75" PointY="4.375" />
+        <AssociationConnector Association="dbProfunionModel.FK__CheckIn__Accommo__6A30C649" />
+        <AssociationConnector Association="dbProfunionModel.FK__Assistanc__Month__656C112C" />
+        <AssociationConnector Association="dbProfunionModel.FK__Assistanc__Payme__6477ECF3" />
+        <AssociationConnector Association="dbProfunionModel.FK__Members__Commiss__45F365D3" />
+        <AssociationConnector Association="dbProfunionModel.FK__Events__MemberRe__49C3F6B7" />
+        <AssociationConnector Association="dbProfunionModel.FK__Members__Positio__44FF419A" />
+        <AssociationConnector Association="dbProfunionModel.FK__Members__UserID__46E78A0C" />
+        <AssociationConnector Association="dbProfunionModel.FK__UserRoles__RoleI__4222D4EF" />
+        <AssociationConnector Association="dbProfunionModel.FK__UserRoles__UserI__412EB0B6" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

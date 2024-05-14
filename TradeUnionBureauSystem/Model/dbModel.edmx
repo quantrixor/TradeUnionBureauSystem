@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище dbProfunionModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accommodation">
+          <Key>
+            <PropertyRef Name="AccommodationID" />
+          </Key>
+          <Property Name="AccommodationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccommodationType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assistance">
+          <Key>
+            <PropertyRef Name="AssistanceID" />
+          </Key>
+          <Property Name="AssistanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberProfcardReceived" Type="int" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentCriteriaID" Type="int" />
+          <Property Name="Summa" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ExtractFromProtocol" Type="int" />
+          <Property Name="MonthID" Type="int" />
+        </EntityType>
+        <EntityType Name="CheckIn">
+          <Key>
+            <PropertyRef Name="CheckInID" />
+          </Key>
+          <Property Name="CheckInID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberProfcardCheckIn" Type="int" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartCheckIn" Type="date" />
+          <Property Name="EndCheckIn" Type="date" />
+          <Property Name="AccommodationID" Type="int" />
+        </EntityType>
+        <EntityType Name="Commissions">
+          <Key>
+            <PropertyRef Name="CommissionID" />
+          </Key>
+          <Property Name="CommissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommissionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberResponsibleID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateOfEvent" Type="date" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberProfcard" Type="int" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AcademicGroup" Type="nvarchar" MaxLength="10" />
+          <Property Name="EntryDate" Type="date" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="PositionID" Type="int" />
+          <Property Name="CommissionID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="VKLink" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Months">
+          <Key>
+            <PropertyRef Name="MonthID" />
+          </Key>
+          <Property Name="MonthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonthName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentCriteria">
+          <Key>
+            <PropertyRef Name="PaymentCriteriaID" />
+          </Key>
+          <Property Name="PaymentCriteriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Criteria" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="RoleID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <Association Name="FK__Assistanc__Month__656C112C">
+          <End Role="Months" Type="Self.Months" Multiplicity="0..1" />
+          <End Role="Assistance" Type="Self.Assistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Months">
+              <PropertyRef Name="MonthID" />
+            </Principal>
+            <Dependent Role="Assistance">
+              <PropertyRef Name="MonthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assistanc__Payme__6477ECF3">
+          <End Role="PaymentCriteria" Type="Self.PaymentCriteria" Multiplicity="0..1" />
+          <End Role="Assistance" Type="Self.Assistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentCriteria">
+              <PropertyRef Name="PaymentCriteriaID" />
+            </Principal>
+            <Dependent Role="Assistance">
+              <PropertyRef Name="PaymentCriteriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CheckIn__Accommo__6A30C649">
+          <End Role="Accommodation" Type="Self.Accommodation" Multiplicity="0..1" />
+          <End Role="CheckIn" Type="Self.CheckIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accommodation">
+              <PropertyRef Name="AccommodationID" />
+            </Principal>
+            <Dependent Role="CheckIn">
+              <PropertyRef Name="AccommodationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__MemberRe__49C3F6B7">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="MemberResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Members__Commiss__45F365D3">
+          <End Role="Commissions" Type="Self.Commissions" Multiplicity="0..1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commissions">
+              <PropertyRef Name="CommissionID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="CommissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Members__Positio__44FF419A">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Members__UserID__46E78A0C">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__RoleI__4222D4EF">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__UserI__412EB0B6">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище dbProfunionModelContainer">
+          <EntitySet Name="Accommodation" EntityType="Self.Accommodation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assistance" EntityType="Self.Assistance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckIn" EntityType="Self.CheckIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Commissions" EntityType="Self.Commissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Months" EntityType="Self.Months" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentCriteria" EntityType="Self.PaymentCriteria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Assistanc__Month__656C112C" Association="Self.FK__Assistanc__Month__656C112C">
+            <End Role="Months" EntitySet="Months" />
+            <End Role="Assistance" EntitySet="Assistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assistanc__Payme__6477ECF3" Association="Self.FK__Assistanc__Payme__6477ECF3">
+            <End Role="PaymentCriteria" EntitySet="PaymentCriteria" />
+            <End Role="Assistance" EntitySet="Assistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CheckIn__Accommo__6A30C649" Association="Self.FK__CheckIn__Accommo__6A30C649">
+            <End Role="Accommodation" EntitySet="Accommodation" />
+            <End Role="CheckIn" EntitySet="CheckIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__MemberRe__49C3F6B7" Association="Self.FK__Events__MemberRe__49C3F6B7">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Members__Commiss__45F365D3" Association="Self.FK__Members__Commiss__45F365D3">
+            <End Role="Commissions" EntitySet="Commissions" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Members__Positio__44FF419A" Association="Self.FK__Members__Positio__44FF419A">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Members__UserID__46E78A0C" Association="Self.FK__Members__UserID__46E78A0C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__RoleI__4222D4EF" Association="Self.FK__UserRoles__RoleI__4222D4EF">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__UserI__412EB0B6" Association="Self.FK__UserRoles__UserI__412EB0B6">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbProfunionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbProfunionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accommodation" EntityType="dbProfunionModel.Accommodation" />
+          <EntitySet Name="Assistance" EntityType="dbProfunionModel.Assistance" />
+          <EntitySet Name="CheckIn" EntityType="dbProfunionModel.CheckIn" />
+          <EntitySet Name="Commissions" EntityType="dbProfunionModel.Commissions" />
+          <EntitySet Name="Events" EntityType="dbProfunionModel.Events" />
+          <EntitySet Name="Members" EntityType="dbProfunionModel.Members" />
+          <EntitySet Name="Months" EntityType="dbProfunionModel.Months" />
+          <EntitySet Name="PaymentCriteria" EntityType="dbProfunionModel.PaymentCriteria" />
+          <EntitySet Name="Positions" EntityType="dbProfunionModel.Positions" />
+          <EntitySet Name="Roles" EntityType="dbProfunionModel.Roles" />
+          <EntitySet Name="UserRoles" EntityType="dbProfunionModel.UserRoles" />
+          <EntitySet Name="Users" EntityType="dbProfunionModel.Users" />
+          <AssociationSet Name="FK__CheckIn__Accommo__6A30C649" Association="dbProfunionModel.FK__CheckIn__Accommo__6A30C649">
+            <End Role="Accommodation" EntitySet="Accommodation" />
+            <End Role="CheckIn" EntitySet="CheckIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assistanc__Month__656C112C" Association="dbProfunionModel.FK__Assistanc__Month__656C112C">
+            <End Role="Months" EntitySet="Months" />
+            <End Role="Assistance" EntitySet="Assistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assistanc__Payme__6477ECF3" Association="dbProfunionModel.FK__Assistanc__Payme__6477ECF3">
+            <End Role="PaymentCriteria" EntitySet="PaymentCriteria" />
+            <End Role="Assistance" EntitySet="Assistance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Members__Commiss__45F365D3" Association="dbProfunionModel.FK__Members__Commiss__45F365D3">
+            <End Role="Commissions" EntitySet="Commissions" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__MemberRe__49C3F6B7" Association="dbProfunionModel.FK__Events__MemberRe__49C3F6B7">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Members__Positio__44FF419A" Association="dbProfunionModel.FK__Members__Positio__44FF419A">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Members__UserID__46E78A0C" Association="dbProfunionModel.FK__Members__UserID__46E78A0C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__RoleI__4222D4EF" Association="dbProfunionModel.FK__UserRoles__RoleI__4222D4EF">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__UserI__412EB0B6" Association="dbProfunionModel.FK__UserRoles__UserI__412EB0B6">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Accommodation">
+          <Key>
+            <PropertyRef Name="AccommodationID" />
+          </Key>
+          <Property Name="AccommodationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccommodationType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CheckIn" Relationship="dbProfunionModel.FK__CheckIn__Accommo__6A30C649" FromRole="Accommodation" ToRole="CheckIn" />
+        </EntityType>
+        <EntityType Name="Assistance">
+          <Key>
+            <PropertyRef Name="AssistanceID" />
+          </Key>
+          <Property Name="AssistanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberProfcardReceived" Type="Int32" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentCriteriaID" Type="Int32" />
+          <Property Name="Summa" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ExtractFromProtocol" Type="Int32" />
+          <Property Name="MonthID" Type="Int32" />
+          <NavigationProperty Name="Months" Relationship="dbProfunionModel.FK__Assistanc__Month__656C112C" FromRole="Assistance" ToRole="Months" />
+          <NavigationProperty Name="PaymentCriteria" Relationship="dbProfunionModel.FK__Assistanc__Payme__6477ECF3" FromRole="Assistance" ToRole="PaymentCriteria" />
+        </EntityType>
+        <EntityType Name="CheckIn">
+          <Key>
+            <PropertyRef Name="CheckInID" />
+          </Key>
+          <Property Name="CheckInID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberProfcardCheckIn" Type="Int32" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartCheckIn" Type="DateTime" Precision="0" />
+          <Property Name="EndCheckIn" Type="DateTime" Precision="0" />
+          <Property Name="AccommodationID" Type="Int32" />
+          <NavigationProperty Name="Accommodation" Relationship="dbProfunionModel.FK__CheckIn__Accommo__6A30C649" FromRole="CheckIn" ToRole="Accommodation" />
+        </EntityType>
+        <EntityType Name="Commissions">
+          <Key>
+            <PropertyRef Name="CommissionID" />
+          </Key>
+          <Property Name="CommissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommissionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Members" Relationship="dbProfunionModel.FK__Members__Commiss__45F365D3" FromRole="Commissions" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberResponsibleID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfEvent" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Members" Relationship="dbProfunionModel.FK__Events__MemberRe__49C3F6B7" FromRole="Events" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberProfcard" Type="Int32" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AcademicGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="CommissionID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="VKLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Commissions" Relationship="dbProfunionModel.FK__Members__Commiss__45F365D3" FromRole="Members" ToRole="Commissions" />
+          <NavigationProperty Name="Events" Relationship="dbProfunionModel.FK__Events__MemberRe__49C3F6B7" FromRole="Members" ToRole="Events" />
+          <NavigationProperty Name="Positions" Relationship="dbProfunionModel.FK__Members__Positio__44FF419A" FromRole="Members" ToRole="Positions" />
+          <NavigationProperty Name="Users" Relationship="dbProfunionModel.FK__Members__UserID__46E78A0C" FromRole="Members" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Months">
+          <Key>
+            <PropertyRef Name="MonthID" />
+          </Key>
+          <Property Name="MonthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonthName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assistance" Relationship="dbProfunionModel.FK__Assistanc__Month__656C112C" FromRole="Months" ToRole="Assistance" />
+        </EntityType>
+        <EntityType Name="PaymentCriteria">
+          <Key>
+            <PropertyRef Name="PaymentCriteriaID" />
+          </Key>
+          <Property Name="PaymentCriteriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Criteria" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assistance" Relationship="dbProfunionModel.FK__Assistanc__Payme__6477ECF3" FromRole="PaymentCriteria" ToRole="Assistance" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Members" Relationship="dbProfunionModel.FK__Members__Positio__44FF419A" FromRole="Positions" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRoles" Relationship="dbProfunionModel.FK__UserRoles__RoleI__4222D4EF" FromRole="Roles" ToRole="UserRoles" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="RoleID" Type="Int32" />
+          <NavigationProperty Name="Roles" Relationship="dbProfunionModel.FK__UserRoles__RoleI__4222D4EF" FromRole="UserRoles" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="dbProfunionModel.FK__UserRoles__UserI__412EB0B6" FromRole="UserRoles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Members" Relationship="dbProfunionModel.FK__Members__UserID__46E78A0C" FromRole="Users" ToRole="Members" />
+          <NavigationProperty Name="UserRoles" Relationship="dbProfunionModel.FK__UserRoles__UserI__412EB0B6" FromRole="Users" ToRole="UserRoles" />
+        </EntityType>
+        <Association Name="FK__CheckIn__Accommo__6A30C649">
+          <End Type="dbProfunionModel.Accommodation" Role="Accommodation" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.CheckIn" Role="CheckIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accommodation">
+              <PropertyRef Name="AccommodationID" />
+            </Principal>
+            <Dependent Role="CheckIn">
+              <PropertyRef Name="AccommodationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assistanc__Month__656C112C">
+          <End Type="dbProfunionModel.Months" Role="Months" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.Assistance" Role="Assistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Months">
+              <PropertyRef Name="MonthID" />
+            </Principal>
+            <Dependent Role="Assistance">
+              <PropertyRef Name="MonthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assistanc__Payme__6477ECF3">
+          <End Type="dbProfunionModel.PaymentCriteria" Role="PaymentCriteria" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.Assistance" Role="Assistance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentCriteria">
+              <PropertyRef Name="PaymentCriteriaID" />
+            </Principal>
+            <Dependent Role="Assistance">
+              <PropertyRef Name="PaymentCriteriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Members__Commiss__45F365D3">
+          <End Type="dbProfunionModel.Commissions" Role="Commissions" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.Members" Role="Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commissions">
+              <PropertyRef Name="CommissionID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="CommissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__MemberRe__49C3F6B7">
+          <End Type="dbProfunionModel.Members" Role="Members" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.Events" Role="Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="MemberResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Members__Positio__44FF419A">
+          <End Type="dbProfunionModel.Positions" Role="Positions" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.Members" Role="Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Members__UserID__46E78A0C">
+          <End Type="dbProfunionModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.Members" Role="Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__RoleI__4222D4EF">
+          <End Type="dbProfunionModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.UserRoles" Role="UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__UserI__412EB0B6">
+          <End Type="dbProfunionModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="dbProfunionModel.UserRoles" Role="UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище dbProfunionModelContainer" CdmEntityContainer="dbProfunionEntities">
+          <EntitySetMapping Name="Accommodation">
+            <EntityTypeMapping TypeName="dbProfunionModel.Accommodation">
+              <MappingFragment StoreEntitySet="Accommodation">
+                <ScalarProperty Name="AccommodationType" ColumnName="AccommodationType" />
+                <ScalarProperty Name="AccommodationID" ColumnName="AccommodationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assistance">
+            <EntityTypeMapping TypeName="dbProfunionModel.Assistance">
+              <MappingFragment StoreEntitySet="Assistance">
+                <ScalarProperty Name="MonthID" ColumnName="MonthID" />
+                <ScalarProperty Name="ExtractFromProtocol" ColumnName="ExtractFromProtocol" />
+                <ScalarProperty Name="Summa" ColumnName="Summa" />
+                <ScalarProperty Name="PaymentCriteriaID" ColumnName="PaymentCriteriaID" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="NumberProfcardReceived" ColumnName="NumberProfcardReceived" />
+                <ScalarProperty Name="AssistanceID" ColumnName="AssistanceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckIn">
+            <EntityTypeMapping TypeName="dbProfunionModel.CheckIn">
+              <MappingFragment StoreEntitySet="CheckIn">
+                <ScalarProperty Name="AccommodationID" ColumnName="AccommodationID" />
+                <ScalarProperty Name="EndCheckIn" ColumnName="EndCheckIn" />
+                <ScalarProperty Name="StartCheckIn" ColumnName="StartCheckIn" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="NumberProfcardCheckIn" ColumnName="NumberProfcardCheckIn" />
+                <ScalarProperty Name="CheckInID" ColumnName="CheckInID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Commissions">
+            <EntityTypeMapping TypeName="dbProfunionModel.Commissions">
+              <MappingFragment StoreEntitySet="Commissions">
+                <ScalarProperty Name="CommissionName" ColumnName="CommissionName" />
+                <ScalarProperty Name="CommissionID" ColumnName="CommissionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="dbProfunionModel.Events">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="DateOfEvent" ColumnName="DateOfEvent" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="MemberResponsibleID" ColumnName="MemberResponsibleID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="dbProfunionModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="VKLink" ColumnName="VKLink" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CommissionID" ColumnName="CommissionID" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="AcademicGroup" ColumnName="AcademicGroup" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="NumberProfcard" ColumnName="NumberProfcard" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Months">
+            <EntityTypeMapping TypeName="dbProfunionModel.Months">
+              <MappingFragment StoreEntitySet="Months">
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="MonthID" ColumnName="MonthID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentCriteria">
+            <EntityTypeMapping TypeName="dbProfunionModel.PaymentCriteria">
+              <MappingFragment StoreEntitySet="PaymentCriteria">
+                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
+                <ScalarProperty Name="PaymentCriteriaID" ColumnName="PaymentCriteriaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="dbProfunionModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="dbProfunionModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="dbProfunionModel.UserRoles">
+              <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="dbProfunionModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
