@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="TradeUnionBureauSystem.cs" />
     <Compile Include="Views\Pages\ByteArrayToImageConverter.cs" />
+    <Compile Include="Views\Pages\EventCardPage.xaml.cs">
+      <DependentUpon>EventCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\EventsListPage.xaml.cs">
+      <DependentUpon>EventsListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\MemberDetailsPage.xaml.cs">
       <DependentUpon>MemberDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +157,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Pages\EventCardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\EventsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\MemberDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

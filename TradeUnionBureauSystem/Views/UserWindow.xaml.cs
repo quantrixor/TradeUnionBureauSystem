@@ -37,5 +37,10 @@ namespace TradeUnionBureauSystem.Views
         {
             UserFrame.Navigate(new MembersProfunionPage(_currentUser));
         }
+
+        private void EventsListButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserFrame.Navigate(new EventsListPage());
+        }
     }
 }

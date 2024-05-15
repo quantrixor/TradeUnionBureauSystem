@@ -30,7 +30,7 @@
                         <TextBlock Text="Члены профбюро" Style="{StaticResource CustomTextBlockStyle}"/>
                     </StackPanel>
                 </Button>
-                <Button Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,10,0,0">
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,10,0,0" x:Name="EventsListButton" Click="EventsListButton_Click">
                     <StackPanel>
                         <Image Source="/Resources/Article.png" Height="60"/>
                         <TextBlock Text="Мероприятия" Style="{StaticResource CustomTextBlockStyle}"/>
