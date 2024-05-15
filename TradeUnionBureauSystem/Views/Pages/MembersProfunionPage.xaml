@@ -17,6 +17,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Border Background="LightGray" Width="60" Height="60" Margin="5" CornerRadius="30" ClipToBounds="True">
                         <Image Source="{Binding Photo, Converter={StaticResource ByteArrayToImageConverter}}" Stretch="Fill"/>
@@ -25,15 +26,29 @@
                         <TextBlock Text="{Binding FullName}" FontWeight="Bold" TextAlignment="Center" FontSize="20" Foreground="White"/>
                         <TextBlock Text="{Binding PhoneNumber}" TextAlignment="Center" FontSize="16" Foreground="White"/>
                     </StackPanel>
+                    <Button Grid.Column="2" Content="X" Command="{Binding DataContext.DeleteMemberCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding}" Margin="5" Width="30" Height="30" Visibility="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.IsChairman, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Button.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                            </Style>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </Grid>
             </Border>
         </DataTemplate>
     </Page.Resources>
+
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <ListView SelectionChanged="MembersListView_SelectionChanged" HorizontalAlignment="Center" x:Name="MembersListView" Background="Transparent" ItemTemplate="{StaticResource MemberTemplate}" BorderBrush="{x:Null}"/>
-                <Button Content="Регистрация нового члена профбюро" x:Name="RegisterNewMemberButton" Height="40" Margin="10" Width="350" Style="{StaticResource CustomButtonStyle}" Click="RegisterNewMember_Click">
+                <Button x:Name="RegisterNewMemberButton" Content="Регистрация нового члена профбюро" Height="40" Margin="10" Width="350" Style="{StaticResource CustomButtonStyle}" Click="RegisterNewMember_Click" Visibility="{Binding IsChairman, Converter={StaticResource BoolToVisibilityConverter}}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="15"/>

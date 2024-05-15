@@ -116,6 +116,7 @@
     <Compile Include="Model\Users.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TradeUnionBureauSystem.cs" />
     <Compile Include="Views\Pages\ByteArrayToImageConverter.cs" />
     <Compile Include="Views\Pages\MemberDetailsPage.xaml.cs">
       <DependentUpon>MemberDetailsPage.xaml</DependentUpon>
