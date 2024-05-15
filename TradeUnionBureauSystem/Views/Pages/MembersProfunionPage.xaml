@@ -1,0 +1,46 @@
+﻿<Page x:Class="TradeUnionBureauSystem.Views.Pages.MembersProfunionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MembersProfunionPage">
+
+
+    <Page.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <DataTemplate x:Key="MemberTemplate">
+            <Border Background="#165DE5" Margin="5" Width="780" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="LightGray" Width="60" Height="60" Margin="5" CornerRadius="30" ClipToBounds="True">
+                        <Image Source="{Binding Photo, Converter={StaticResource ByteArrayToImageConverter}}" Stretch="Fill"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding FullName}" FontWeight="Bold" TextAlignment="Center" FontSize="20" Foreground="White"/>
+                        <TextBlock Text="{Binding PhoneNumber}" TextAlignment="Center" FontSize="16" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <ListView HorizontalAlignment="Center" x:Name="MembersListView" Background="Transparent" ItemTemplate="{StaticResource MemberTemplate}" BorderBrush="{x:Null}"/>
+                <Button Content="Регистрация нового члена профбюро" Height="40" Margin="10" Width="350" Style="{StaticResource CustomButtonStyle}" Click="RegisterNewMember_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

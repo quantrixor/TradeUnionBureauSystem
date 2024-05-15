@@ -100,6 +100,7 @@
     <Compile Include="Model\Months.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PartialMembers.cs" />
     <Compile Include="Model\PaymentCriteria.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -114,6 +115,10 @@
     </Compile>
     <Compile Include="Model\Users.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ByteArrayToImageConverter.cs" />
+    <Compile Include="Views\Pages\MembersProfunionPage.xaml.cs">
+      <DependentUpon>MembersProfunionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
@@ -139,6 +144,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Pages\MembersProfunionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\SignInPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
