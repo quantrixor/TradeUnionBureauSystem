@@ -32,7 +32,7 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <ListView HorizontalAlignment="Center" x:Name="MembersListView" Background="Transparent" ItemTemplate="{StaticResource MemberTemplate}" BorderBrush="{x:Null}"/>
+                <ListView SelectionChanged="MembersListView_SelectionChanged" HorizontalAlignment="Center" x:Name="MembersListView" Background="Transparent" ItemTemplate="{StaticResource MemberTemplate}" BorderBrush="{x:Null}"/>
                 <Button Content="Регистрация нового члена профбюро" Height="40" Margin="10" Width="350" Style="{StaticResource CustomButtonStyle}" Click="RegisterNewMember_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
