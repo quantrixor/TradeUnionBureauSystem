@@ -41,7 +41,10 @@ namespace TradeUnionBureauSystem.Views.Pages
 
             using (var context = new dbProfunionEntities())
             {
-                var user = context.Users.SingleOrDefault(u => u.Username == username && password == u.PasswordHash);
+                var user = context.Users
+                    .Include("Members")
+                    .Include("UserRoles.Roles")
+                    .SingleOrDefault(u => u.Username == username && password == u.PasswordHash);
                 if (user != null)
                 {
                     UserWindow userWindow = new UserWindow(user);

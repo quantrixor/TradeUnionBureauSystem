@@ -25,17 +25,17 @@
                                 <ImageBrush x:Name="UserPicture" ImageSource="/Resources/no_photo.jpg"/>
                             </Border.Background>
                         </Border>
-                        <StackPanel Width="500" VerticalAlignment="Center">
-                            <Label x:Name="lblFullName" ContentStringFormat="ФИО: {0}" Content="Иванов Иван Иванович"/>
-                            <Label x:Name="lblPosition" ContentStringFormat="Должность: {0}" Content="Председатель профсоюзного бюро"/>
-                            <Label x:Name="lblAcademicGroup" ContentStringFormat="Академическая группа: {0}" Content="409 Б"/>
-                            <Label x:Name="lblReceiptDate" ContentStringFormat="Дата поступления в профсоюз: {0}" Content="01.09.2020"/>
-                            <Label x:Name="lblPhoneNumber" ContentStringFormat="Номер телефона: {0}" Content="+7 927 181 37 30"/>
-                            <Label x:Name="lblVkLink" ContentStringFormat="Связаться по ВК: {0}" Content="vk.com/ivanov_ivan"/>
+                        <StackPanel Width="400" VerticalAlignment="Center" Margin="20">
+                            <TextBox x:Name="txbFullName" IsReadOnly="True" />
+                            <ComboBox x:Name="cbxPosition" IsEnabled="False" DisplayMemberPath="PositionName" SelectedValuePath="PositionID"/>
+                            <TextBox x:Name="txbAcademicGroup" IsReadOnly="True"/>
+                            <TextBox x:Name="txbReceiptDate" IsReadOnly="True"/>
+                            <TextBox x:Name="txbPhoneNumber" IsReadOnly="True"/>
+                            <TextBox x:Name="txbVkLink" IsReadOnly="True"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Button Style="{StaticResource CustomButtonStyle}" Margin="0,40,0,0" Width="300" Height="40" Content="Редактировать">
+                <Button Style="{StaticResource CustomButtonStyle}" Name="EditData" Click="EditData_Click" Margin="0,40,0,0" Width="300" Height="40" Content="Редактировать">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="16"/>

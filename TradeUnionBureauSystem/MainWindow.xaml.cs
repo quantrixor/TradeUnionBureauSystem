@@ -15,7 +15,7 @@ namespace TradeUnionBureauSystem
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new SignInPage());
+            MainFrame.Navigate(new StartPage());
         }
     }
 }

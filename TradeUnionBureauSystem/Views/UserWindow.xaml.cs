@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TradeUnionBureauSystem.Model;
+using TradeUnionBureauSystem.Views.Pages;
 
 namespace TradeUnionBureauSystem.Views
 {
@@ -25,6 +26,11 @@ namespace TradeUnionBureauSystem.Views
         {
             InitializeComponent();
             _currentUser = currentUser;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            UserFrame.Navigate(new UserProfilePage(_currentUser));
         }
     }
 }
