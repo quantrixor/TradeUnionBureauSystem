@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using TradeUnionBureauSystem.Model;
 
@@ -19,6 +20,10 @@ namespace TradeUnionBureauSystem.Views.Pages
             
             _currentUser = currentUser;
             DataContext = this;
+
+            // Отображение кнопки регистрации нового члена профсоюза только для председателя
+            RegisterNewMemberButton.Visibility = IsCurrentUserChairman() ? Visibility.Visible : Visibility.Collapsed;
+
         }
         private void LoadMembers()
         {
@@ -29,10 +34,32 @@ namespace TradeUnionBureauSystem.Views.Pages
                 MembersListView.ItemsSource = Members;
             }
         }
+        private bool IsCurrentUserChairman()
+        {
+            using (var context = new dbProfunionEntities())
+            {
+                var chairmanRole = context.Roles.FirstOrDefault(r => r.RoleName == "Председатель");
+                if (chairmanRole == null)
+                    return false;
+
+                var userRole = context.UserRoles.FirstOrDefault(ur => ur.UserID == _currentUser.UserID && ur.RoleID == chairmanRole.RoleID);
+
+                if (userRole != null)
+                {
+                   // MessageBox.Show("Пользователь является председателем профсоюза.", "Роль подтверждена", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return true;
+                }
+                else
+                {
+                   // MessageBox.Show("Пользователь не является председателем профсоюза.", "Роль не подтверждена", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+            }
+        }
 
         private void RegisterNewMember_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+            NavigationService.Navigate(new RegistrationMemberPage());
         }
 
         private void MembersListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
