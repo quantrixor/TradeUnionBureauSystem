@@ -71,6 +71,7 @@
           <Property Name="CommissionID" Type="int" />
           <Property Name="UserID" Type="int" />
           <Property Name="VKLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Months">
           <Key>
@@ -406,6 +407,7 @@
           <NavigationProperty Name="Events" Relationship="dbProfunionModel.FK__Events__MemberRe__49C3F6B7" FromRole="Members" ToRole="Events" />
           <NavigationProperty Name="Positions" Relationship="dbProfunionModel.FK__Members__Positio__44FF419A" FromRole="Members" ToRole="Positions" />
           <NavigationProperty Name="Users" Relationship="dbProfunionModel.FK__Members__UserID__46E78A0C" FromRole="Members" ToRole="Users" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Months">
           <Key>
@@ -633,6 +635,7 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="dbProfunionModel.Members">
               <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="VKLink" ColumnName="VKLink" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CommissionID" ColumnName="CommissionID" />

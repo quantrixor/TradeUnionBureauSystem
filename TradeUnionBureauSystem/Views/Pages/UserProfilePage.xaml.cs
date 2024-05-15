@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                 txbReceiptDate.IsReadOnly = false;
                 txbPhoneNumber.IsReadOnly = false;
                 txbVkLink.IsReadOnly = false;
+                ChangeImageButton.Visibility = Visibility.Visible;
 
                 EditData.Content = "Сохранить";
                 isEditing = true;
@@ -78,7 +80,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                 txbReceiptDate.IsReadOnly = true;
                 txbPhoneNumber.IsReadOnly = true;
                 txbVkLink.IsReadOnly = true;
-
+                ChangeImageButton.Visibility = Visibility.Collapsed;
                 EditData.Content = "Редактировать";
                 isEditing = false;
             }
@@ -86,6 +88,11 @@ namespace TradeUnionBureauSystem.Views.Pages
 
         private void LoadUserData()
         {
+            if (_currentUser == null)
+            {
+                MessageBox.Show("Пользователь не инициализирован.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             var member = _currentUser.Members.FirstOrDefault(); // Получение первого элемента из коллекции Members
 
             if (member != null)
@@ -96,6 +103,20 @@ namespace TradeUnionBureauSystem.Views.Pages
                 txbReceiptDate.Text = member.EntryDate?.ToString("d") ?? string.Empty;
                 txbPhoneNumber.Text = member.PhoneNumber;
                 txbVkLink.Text = member.VKLink;
+
+                // Загрузка изображения, если оно существует
+                if (member.Photo != null)
+                {
+                    using (var ms = new System.IO.MemoryStream(member.Photo))
+                    {
+                        var image = new BitmapImage();
+                        image.BeginInit();
+                        image.StreamSource = ms;
+                        image.CacheOption = BitmapCacheOption.OnLoad;
+                        image.EndInit();
+                        UserPicture.ImageSource = image;
+                    }
+                }
             }
         }
 
@@ -105,6 +126,37 @@ namespace TradeUnionBureauSystem.Views.Pages
             {
                 _positions = context.Positions.ToList();
                 cbxPosition.ItemsSource = _positions;
+            }
+        }
+
+        private void ChangeImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                var member = _currentUser.Members.FirstOrDefault();
+
+                if (member != null)
+                {
+                    member.Photo = System.IO.File.ReadAllBytes(filePath);
+                    using (var context = new dbProfunionEntities())
+                    {
+                        context.Entry(member).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+                    }
+
+                    using (var ms = new System.IO.MemoryStream(member.Photo))
+                    {
+                        var image = new BitmapImage();
+                        image.BeginInit();
+                        image.StreamSource = ms;
+                        image.CacheOption = BitmapCacheOption.OnLoad;
+                        image.EndInit();
+                        UserPicture.ImageSource = image;
+                    }
+                }
             }
         }
     }
