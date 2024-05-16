@@ -92,6 +92,7 @@ namespace TradeUnionBureauSystem.Views.Pages
 
                 _currentEvent.Title = TitleTextBox.Text;
                 _currentEvent.DateOfEvent = DatePicker.SelectedDate ?? DateTime.Now;
+                _currentEvent.Desriptioin = InfoTextBox.Text;
                 _currentEvent.PicEvent = _eventPhoto;
 
                 context.SaveChanges();
