@@ -55,6 +55,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="DateOfEvent" Type="date" />
           <Property Name="PicEvent" Type="varbinary(max)" />
+          <Property Name="Desriptioin" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
@@ -388,6 +389,7 @@
           <Property Name="DateOfEvent" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Members" Relationship="dbProfunionModel.FK__Events__MemberRe__49C3F6B7" FromRole="Events" ToRole="Members" />
           <Property Name="PicEvent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Desriptioin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
@@ -627,6 +629,7 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="dbProfunionModel.Events">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Desriptioin" ColumnName="Desriptioin" />
                 <ScalarProperty Name="PicEvent" ColumnName="PicEvent" />
                 <ScalarProperty Name="DateOfEvent" ColumnName="DateOfEvent" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

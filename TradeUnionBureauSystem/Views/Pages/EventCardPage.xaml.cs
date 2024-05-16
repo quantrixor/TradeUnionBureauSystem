@@ -33,7 +33,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                     if (eventDetails != null)
                     {
                         TitleTextBox.Text = eventDetails.Title;
-                        InfoTextBox.Text = "Информация о мероприятии"; // Добавьте дополнительные данные здесь
+                        InfoTextBox.Text = eventDetails.Desriptioin; // Дополнительные данные здесь
                         DatePicker.SelectedDate = eventDetails.DateOfEvent;
 
                         if (eventDetails.PicEvent != null && eventDetails.PicEvent.Length > 0)

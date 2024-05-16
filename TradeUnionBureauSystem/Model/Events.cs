@@ -19,6 +19,7 @@ namespace TradeUnionBureauSystem.Model
         public string Title { get; set; }
         public Nullable<System.DateTime> DateOfEvent { get; set; }
         public byte[] PicEvent { get; set; }
+        public string Desriptioin { get; set; }
     
         public virtual Members Members { get; set; }
     }
