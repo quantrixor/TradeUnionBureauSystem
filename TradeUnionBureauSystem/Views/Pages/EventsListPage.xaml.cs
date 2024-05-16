@@ -72,11 +72,6 @@ namespace TradeUnionBureauSystem.Views.Pages
 
         }
 
-        private void AddEvent(object parameter)
-        {
-            // Логика для добавления нового мероприятия
-            // Открытие окна или страницы для добавления мероприятия
-        }
         private void EventsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedEvent = (Events)((ListView)sender).SelectedItem;
@@ -154,9 +149,16 @@ namespace TradeUnionBureauSystem.Views.Pages
             }
         }
 
+        private void AddEvent(object parameter)
+        {
+            // Логика для добавления нового мероприятия
+            // Открытие окна или страницы для добавления мероприятия
+            
+        }
+
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new EventCardPage(new Events()));
         }
     }
 }

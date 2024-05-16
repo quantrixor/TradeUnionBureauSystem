@@ -5,9 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1080"
       Title="EventCardPage">
-
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -20,14 +19,24 @@
             <Border Background="#165DE5" CornerRadius="20" Width="800">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
                     <StackPanel Width="700" Margin="20">
-                        <TextBlock x:Name="TitleTextBlock" FontWeight="Bold" FontSize="24" Foreground="White" Text="Название мероприятия" Margin="0,0,0,10"/>
-                        <TextBlock x:Name="InfoTextBlock" FontSize="18" Foreground="White" Text="Информация о мероприятии" Margin="0,0,0,10"/>
-                        <TextBlock x:Name="DateTextBlock" FontSize="18" Foreground="White" Text="Дата проведения" Margin="0,0,0,10"/>
+                        <TextBlock Text="Название мероприятия:" Foreground="LightGray" FontWeight="Bold" FontSize="24" Style="{StaticResource CustomTextBlockStyle}"/>
+
+                        <TextBox x:Name="TitleTextBox" Height="50" TextWrapping="Wrap" FontWeight="Bold" FontSize="24" Foreground="White" Margin="0,0,0,10"/>
+                        <TextBlock Text="Информация о мероприятии:" Foreground="LightGray" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="InfoTextBox" FontSize="18" Height="auto" TextWrapping="Wrap" Foreground="White" Margin="0,0,0,10"/>
+                        <DatePicker x:Name="DatePicker" FontSize="18" Margin="0,0,0,10"/>
                         <Image x:Name="EventImage" Height="200" Stretch="Uniform" Margin="0,10,0,10"/>
+                        <Button Content="Сохранить" Height="40" Margin="20" Width="200" Style="{StaticResource CustomButtonStyle}" Click="SaveEvent_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
-            <Button Content="Редактировать" Height="40" Margin="20" Width="200" Style="{StaticResource CustomButtonStyle}" Click="EditEvent_Click">
+            <Button Content="Сохранить" Height="40" Margin="20" Width="200" Style="{StaticResource CustomButtonStyle}" Click="SaveEvent_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"/>
