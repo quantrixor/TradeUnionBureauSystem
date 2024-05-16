@@ -12,12 +12,15 @@ namespace TradeUnionBureauSystem.Views.Pages
     {
         private Events _currentEvent;
         private byte[] _eventPhoto;
-
-        public EventCardPage(Events selectedEvent = null)
+        private Users _currentUser;
+        public EventCardPage(Users currentUser, Events selectedEvent = null)
         {
             InitializeComponent();
+            _currentUser = currentUser;
             _currentEvent = selectedEvent ?? new Events();
             LoadEventDetails();
+
+            CheckUserRole();
         }
 
         private void LoadEventDetails()
@@ -94,6 +97,32 @@ namespace TradeUnionBureauSystem.Views.Pages
                 context.SaveChanges();
                 MessageBox.Show("Мероприятие сохранено.", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.GoBack();
+            }
+        }
+
+        private bool IsCurrentUserChairman()
+        {
+            using (var context = new dbProfunionEntities())
+            {
+                var chairmanRole = context.Roles.FirstOrDefault(r => r.RoleName == "Председатель");
+                if (chairmanRole == null)
+                    return false;
+
+                var userRole = context.UserRoles.FirstOrDefault(ur => ur.UserID == _currentUser.UserID && ur.RoleID == chairmanRole.RoleID);
+                return userRole != null;
+            }
+        }
+
+        private void CheckUserRole()
+        {
+            if (!IsCurrentUserChairman())
+            {
+                TitleTextBox.IsReadOnly = true;
+                InfoTextBox.IsReadOnly = true;
+                DatePicker.IsEnabled = false;
+                UploadPhotoButton.IsEnabled = false;
+                UploadPhotoButton.Visibility = Visibility.Collapsed;
+                SaveEventButton.Visibility = Visibility.Collapsed;
             }
         }
     }

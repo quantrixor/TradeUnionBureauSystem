@@ -15,19 +15,23 @@ namespace TradeUnionBureauSystem.Views.Pages
     /// </summary>
     public partial class EventsListPage : Page
     {
+        private Users _currentUser;
         public ObservableCollection<Events> PastEvents { get; set; }
         public ObservableCollection<Events> UpcomingEvents { get; set; }
         public ICommand DeleteEventCommand { get; }
         public ICommand AddEventCommand { get; }
-        public EventsListPage()
+        public EventsListPage(Users currentUser)
         {
             InitializeComponent();
+            _currentUser = currentUser;
             DataContext = this;
 
             DeleteEventCommand = new RelayCommand<Events>(DeleteEvent);
             AddEventCommand = new RelayCommand(AddEvent);
 
             LoadEvents();
+
+            CheckUserRole();
         }
         private void LoadEvents()
         {
@@ -41,6 +45,50 @@ namespace TradeUnionBureauSystem.Views.Pages
 
                 PastEventsListView.ItemsSource = PastEvents;
                 UpcomingEventsListView.ItemsSource = UpcomingEvents;
+            }
+        }
+        private void CheckUserRole()
+        {
+            using (var context = new dbProfunionEntities())
+            {
+                var chairmanRole = context.Roles.FirstOrDefault(r => r.RoleName == "Председатель");
+                if (chairmanRole != null)
+                {
+                    var userRole = context.UserRoles.FirstOrDefault(ur => ur.UserID == _currentUser.UserID && ur.RoleID == chairmanRole.RoleID);
+                    if (userRole != null)
+                    {
+                        AddNewEvent.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        AddNewEvent.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+        }
+        private bool IsCurrentUserChairman()
+        {
+            using (var context = new dbProfunionEntities())
+            {
+                var chairmanRole = context.Roles.FirstOrDefault(r => r.RoleName == "Председатель");
+                if (chairmanRole == null)
+                    return false;
+
+                var userRole = context.UserRoles.FirstOrDefault(ur => ur.UserID == _currentUser.UserID && ur.RoleID == chairmanRole.RoleID);
+                return userRole != null;
+            }
+        }
+
+        private void AddEvent(object parameter)
+        {
+            if (IsCurrentUserChairman())
+            {
+                // Переход на страницу добавления нового мероприятия
+                this.NavigationService.Navigate(new EventCardPage(_currentUser));
+            }
+            else
+            {
+                MessageBox.Show("У вас нет прав на добавление мероприятия.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -79,7 +127,7 @@ namespace TradeUnionBureauSystem.Views.Pages
             if (selectedEvent != null)
             {
                 // Переход на страницу с подробной информацией
-                this.NavigationService.Navigate(new EventCardPage(selectedEvent));
+                this.NavigationService.Navigate(new EventCardPage(_currentUser, selectedEvent));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -149,16 +197,11 @@ namespace TradeUnionBureauSystem.Views.Pages
             }
         }
 
-        private void AddEvent(object parameter)
-        {
-            // Логика для добавления нового мероприятия
-            // Открытие окна или страницы для добавления мероприятия
-            
-        }
+        
 
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new EventCardPage(new Events()));
+            this.NavigationService.Navigate(new EventCardPage(_currentUser,new Events()));
         }
     }
 }

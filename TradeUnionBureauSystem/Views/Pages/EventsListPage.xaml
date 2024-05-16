@@ -63,7 +63,7 @@
                     </ScrollViewer>
                 </TabItem>
             </TabControl>
-            <Button Content="Добавить" Height="40" Margin="10" Width="150" Style="{StaticResource CustomButtonStyle}" Click="AddEvent_Click">
+            <Button Content="Добавить" x:Name="AddNewEvent" Height="40" Margin="10" Width="150" Style="{StaticResource CustomButtonStyle}" Click="AddEvent_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"/>

@@ -40,7 +40,7 @@ namespace TradeUnionBureauSystem.Views
 
         private void EventsListButton_Click(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new EventsListPage());
+            UserFrame.Navigate(new EventsListPage(_currentUser));
         }
     }
 }
