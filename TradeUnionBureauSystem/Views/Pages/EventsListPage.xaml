@@ -18,7 +18,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Center">
                         <TextBlock Text="{Binding Title}" FontWeight="Bold" TextAlignment="Center" FontSize="20" Foreground="White"/>
-                        <TextBlock Text="{Binding DateOfEvent, StringFormat='Дата проведения: {0:d}'}" TextAlignment="Center" FontSize="16" Foreground="White"/>
+                        <TextBlock Text="{Binding DateOfEvent, StringFormat='{}{0:dd.MM.yyyy}'}" TextAlignment="Center" FontSize="16" Foreground="White"/>
                     </StackPanel>
                     <Button Grid.Column="1" Content="X" Command="{Binding DataContext.DeleteEventCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding}" Margin="5" Width="30" Height="30">
                         <Button.Resources>
