@@ -101,22 +101,29 @@ namespace TradeUnionBureauSystem.Views.Pages
             }
         }
 
-        private bool IsCurrentUserChairman()
+        private bool IsCurrentUserInAllowedRole()
         {
             using (var context = new dbProfunionEntities())
             {
-                var chairmanRole = context.Roles.FirstOrDefault(r => r.RoleName == "Председатель");
-                if (chairmanRole == null)
-                    return false;
+                var allowedRoles = new string[]
+                {
+                    "Председатель",
+                    "Заместитель председателя",
+                    "Руководитель информационной комиссии"
+                };
 
-                var userRole = context.UserRoles.FirstOrDefault(ur => ur.UserID == _currentUser.UserID && ur.RoleID == chairmanRole.RoleID);
-                return userRole != null;
+                var userRoles = from ur in context.UserRoles
+                                join r in context.Roles on ur.RoleID equals r.RoleID
+                                where ur.UserID == _currentUser.UserID && allowedRoles.Contains(r.RoleName)
+                                select ur;
+
+                return userRoles.Any();
             }
         }
 
         private void CheckUserRole()
         {
-            if (!IsCurrentUserChairman())
+            if (!IsCurrentUserInAllowedRole())
             {
                 TitleTextBox.IsReadOnly = true;
                 InfoTextBox.IsReadOnly = true;

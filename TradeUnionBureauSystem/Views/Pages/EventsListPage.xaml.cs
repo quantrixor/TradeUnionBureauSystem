@@ -20,6 +20,7 @@ namespace TradeUnionBureauSystem.Views.Pages
         public ObservableCollection<Events> UpcomingEvents { get; set; }
         public ICommand DeleteEventCommand { get; }
         public ICommand AddEventCommand { get; }
+
         public EventsListPage(Users currentUser)
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace TradeUnionBureauSystem.Views.Pages
 
             CheckUserRole();
         }
+
         private void LoadEvents()
         {
             using (var context = new dbProfunionEntities())
@@ -47,41 +49,57 @@ namespace TradeUnionBureauSystem.Views.Pages
                 UpcomingEventsListView.ItemsSource = UpcomingEvents;
             }
         }
+
         private void CheckUserRole()
         {
             using (var context = new dbProfunionEntities())
             {
-                var chairmanRole = context.Roles.FirstOrDefault(r => r.RoleName == "Председатель");
-                if (chairmanRole != null)
+                var allowedRoles = new string[]
                 {
-                    var userRole = context.UserRoles.FirstOrDefault(ur => ur.UserID == _currentUser.UserID && ur.RoleID == chairmanRole.RoleID);
-                    if (userRole != null)
-                    {
-                        AddNewEvent.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        AddNewEvent.Visibility = Visibility.Collapsed;
-                    }
+                    "Председатель",
+                    "Заместитель председателя",
+                    "Руководитель информационной комиссии"
+                };
+
+                var userRoles = from ur in context.UserRoles
+                                join r in context.Roles on ur.RoleID equals r.RoleID
+                                where ur.UserID == _currentUser.UserID && allowedRoles.Contains(r.RoleName)
+                                select ur;
+
+                if (userRoles.Any())
+                {
+                    AddNewEvent.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    AddNewEvent.Visibility = Visibility.Collapsed;
                 }
             }
         }
-        private bool IsCurrentUserChairman()
+
+        private bool IsCurrentUserInAllowedRole()
         {
             using (var context = new dbProfunionEntities())
             {
-                var chairmanRole = context.Roles.FirstOrDefault(r => r.RoleName == "Председатель");
-                if (chairmanRole == null)
-                    return false;
+                var allowedRoles = new string[]
+                {
+                    "Председатель",
+                    "Заместитель председателя",
+                    "Руководитель информационной комиссии"
+                };
 
-                var userRole = context.UserRoles.FirstOrDefault(ur => ur.UserID == _currentUser.UserID && ur.RoleID == chairmanRole.RoleID);
-                return userRole != null;
+                var userRoles = from ur in context.UserRoles
+                                join r in context.Roles on ur.RoleID equals r.RoleID
+                                where ur.UserID == _currentUser.UserID && allowedRoles.Contains(r.RoleName)
+                                select ur;
+
+                return userRoles.Any();
             }
         }
 
         private void AddEvent(object parameter)
         {
-            if (IsCurrentUserChairman())
+            if (IsCurrentUserInAllowedRole())
             {
                 // Переход на страницу добавления нового мероприятия
                 this.NavigationService.Navigate(new EventCardPage(_currentUser));
@@ -117,7 +135,6 @@ namespace TradeUnionBureauSystem.Views.Pages
                     }
                 }
             }
-
         }
 
         private void EventsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -130,6 +147,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                 this.NavigationService.Navigate(new EventCardPage(_currentUser, selectedEvent));
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
@@ -197,11 +215,9 @@ namespace TradeUnionBureauSystem.Views.Pages
             }
         }
 
-        
-
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new EventCardPage(_currentUser,new Events()));
+            this.NavigationService.Navigate(new EventCardPage(_currentUser, new Events()));
         }
     }
 }
