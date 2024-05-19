@@ -117,6 +117,9 @@
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TradeUnionBureauSystem.cs" />
+    <Compile Include="Views\Pages\AddAssistancePage.xaml.cs">
+      <DependentUpon>AddAssistancePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\ByteArrayToImageConverter.cs" />
     <Compile Include="Views\Pages\EventCardPage.xaml.cs">
       <DependentUpon>EventCardPage.xaml</DependentUpon>
@@ -139,6 +142,9 @@
     <Compile Include="Views\Pages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\MaterialHelpPage.xaml.cs">
+      <DependentUpon>MaterialHelpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
     </Compile>
@@ -157,6 +163,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Pages\AddAssistancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\EventCardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\MaterialHelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

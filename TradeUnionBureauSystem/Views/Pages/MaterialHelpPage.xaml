@@ -1,0 +1,181 @@
+﻿<Page x:Class="TradeUnionBureauSystem.Views.Pages.MaterialHelpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
+      mc:Ignorable="d" FontSize="14"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StudentsList">
+    <Page.Resources>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#165DE5"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#165DE5"/>
+        </Style>
+    </Page.Resources>
+    
+    
+    <Grid>
+        <StackPanel>
+            <TabControl x:Name="MonthTabControl" SelectionChanged="MonthTabControl_SelectionChanged">
+                <TabItem Header="Январь" Name="JanuaryTab">
+                    <DataGrid x:Name="JanuaryDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Февраль" Name="FebruaryTab">
+                    <DataGrid x:Name="FebruaryDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Март" Name="MarchTab">
+                    <DataGrid x:Name="MarchDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Апрель" Name="AprilTab">
+                    <DataGrid x:Name="AprilDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Май" Name="MayTab">
+                    <DataGrid x:Name="MayDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Июнь" Name="JuneTab">
+                    <DataGrid x:Name="JuneDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Июль" Name="JuleTab">
+                    <DataGrid x:Name="JuleDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Авгутс" Name="AugustTab">
+                    <DataGrid x:Name="AugustDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Сентябрь" Name="SeptemberTab">
+                    <DataGrid x:Name="SeptemberDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Октябрь" Name="OctoberTab">
+                    <DataGrid x:Name="OctoberDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Ноябрь" Name="NovemberTab">
+                    <DataGrid x:Name="NovemberDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Декабрь" Name="DecemberTab">
+                    <DataGrid x:Name="DecemberDataGrid" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№" Binding="{Binding Number}" Width="Auto"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                            <DataGridTextColumn Header="Критерии выплаты" Binding="{Binding PaymentCriteria}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="Auto"/>
+                            <DataGridTextColumn Header="№ протокола" Binding="{Binding ProtocolNumber}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button x:Name="AddButton" Content="Добавить" Width="300" Click="AddButton_Click" Visibility="Collapsed" Style="{StaticResource CustomButtonStyle}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="DeleteButton" Width="300" Style="{StaticResource CustomButtonStyle}" Content="Удалить" Click="DeleteButton_Click" Visibility="Collapsed" Margin="10,0,0,0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+            <TextBlock x:Name="TotalSumTextBlock" Text="Общая сумма выплат за месяц: 0 рублей" Margin="10" HorizontalAlignment="Center" FontSize="16"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,87 @@
+﻿<Page x:Class="TradeUnionBureauSystem.Views.Pages.AddAssistancePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1080"
+      Title="AddAssistancePage">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#98F9FF" Offset="0" />
+                <GradientStop Color="#397CFE" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Background="#165DE5" CornerRadius="20" Width="800">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Фамилия" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                    <TextBox x:Name="LastNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBlock Text="Имя" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                    <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBlock Text="Отчество" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                    <TextBox x:Name="MiddleNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBlock Text="Критерии выплаты" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                    <ComboBox x:Name="PaymentCriteriaComboBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                        <ComboBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </ComboBox.Resources>
+                    </ComboBox>
+
+                    <TextBlock Text="Сумма" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                    <TextBox x:Name="SummaTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBlock Text="№ протокола" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                    <TextBox x:Name="ProtocolNumberTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                </StackPanel>
+            </Border>
+            <Button Margin="0,10,0,0" Width="300" Content="Сохранить" Click="SaveButton_Click" Style="{StaticResource CustomButtonStyle}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

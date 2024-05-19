@@ -36,7 +36,7 @@
                         <TextBlock Text="Мероприятия" Style="{StaticResource CustomTextBlockStyle}"/>
                     </StackPanel>
                 </Button>
-                <Button Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,10,0,0">
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" x:Name="MaterialHelp" Click="MaterialHelp_Click" Margin="0,10,0,0">
                     <StackPanel>
                         <Image Source="/Resources/Trust.png" Height="60"/>
                         <TextBlock Text="Материальная помощь" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource CustomTextBlockStyle}"/>
