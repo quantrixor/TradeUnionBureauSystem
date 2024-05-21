@@ -47,5 +47,10 @@ namespace TradeUnionBureauSystem.Views
         {
             UserFrame.Navigate(new MaterialHelpPage(_currentUser));
         }
+
+        private void buttonProfilactory_Click(object sender, RoutedEventArgs e)
+        {
+            UserFrame.Navigate(new ProfilaktoryPage(_currentUser));
+        }
     }
 }

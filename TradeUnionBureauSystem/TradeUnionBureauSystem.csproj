@@ -120,6 +120,9 @@
     <Compile Include="Views\Pages\AddAssistancePage.xaml.cs">
       <DependentUpon>AddAssistancePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\AddCheckInPage.xaml.cs">
+      <DependentUpon>AddCheckInPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\ByteArrayToImageConverter.cs" />
     <Compile Include="Views\Pages\EventCardPage.xaml.cs">
       <DependentUpon>EventCardPage.xaml</DependentUpon>
@@ -132,6 +135,9 @@
     </Compile>
     <Compile Include="Views\Pages\MembersProfunionPage.xaml.cs">
       <DependentUpon>MembersProfunionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ProfilaktoryPage.xaml.cs">
+      <DependentUpon>ProfilaktoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\RegistrationMemberPage.xaml.cs">
       <DependentUpon>RegistrationMemberPage.xaml</DependentUpon>
@@ -167,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\AddCheckInPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\EventCardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\MembersProfunionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ProfilaktoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
