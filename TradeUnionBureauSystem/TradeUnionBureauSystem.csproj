@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="db\Profunion 2.0.sql" />
     <Content Include="Model\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>dbModel.Context.cs</LastGenOutput>
