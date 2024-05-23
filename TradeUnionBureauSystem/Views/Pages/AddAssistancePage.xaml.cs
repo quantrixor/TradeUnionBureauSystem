@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using TradeUnionBureauSystem.Model;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TradeUnionBureauSystem.Views.Pages
 {
@@ -68,9 +71,46 @@ namespace TradeUnionBureauSystem.Views.Pages
                 context.Assistance.Add(newAssistance);
                 context.SaveChanges();
                 MessageBox.Show("Материальная помощь успешно добавлена.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                // Переход на предыдущую страницу
-                NavigationService.GoBack();
+               
             }
+        }
+
+        private void SummaTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void SummaTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string text = (string)e.DataObject.GetData(typeof(string));
+                if (!IsTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
+        private static bool IsTextAllowed(string text)
+        {
+            Regex regex = new Regex("[^0-9.,]+"); // Разрешены только цифры и символы запятой/точки
+            return !regex.IsMatch(text);
+        }
+
+        private void ProtocolNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Переход на предыдущую страницу
+            NavigationService.GoBack();
         }
     }
 }

@@ -7,21 +7,21 @@ using TradeUnionBureauSystem.Model;
 
 namespace TradeUnionBureauSystem.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для MemberDetailsPage.xaml
-    /// </summary>
     public partial class MemberDetailsPage : Page
     {
         private Members _member;
         private List<Positions> _positions;
+        private List<Commissions> _commissions; // Добавим список комиссий
 
         public MemberDetailsPage(Members member)
         {
             InitializeComponent();
             _member = member;
             LoadPositions();
+            LoadCommissions(); // Загрузим комиссии
             LoadMemberData();
         }
+
         private void LoadPositions()
         {
             using (var context = new dbProfunionEntities())
@@ -30,6 +30,16 @@ namespace TradeUnionBureauSystem.Views.Pages
                 cbxPosition.ItemsSource = _positions;
             }
         }
+
+        private void LoadCommissions()
+        {
+            using (var context = new dbProfunionEntities())
+            {
+                _commissions = context.Commissions.ToList();
+                cbxCommission.ItemsSource = _commissions;
+            }
+        }
+
         private void LoadMemberData()
         {
             if (_member != null)
@@ -40,6 +50,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                 txbReceiptDate.Text = _member.EntryDate?.ToString("d") ?? string.Empty;
                 txbPhoneNumber.Text = _member.PhoneNumber;
                 txbVkLink.Text = _member.VKLink;
+                cbxCommission.SelectedValue = _member.CommissionID;
 
                 // Загрузка изображения, если оно существует
                 if (_member.Photo != null)
@@ -55,6 +66,11 @@ namespace TradeUnionBureauSystem.Views.Pages
                     }
                 }
             }
+        }
+
+        private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

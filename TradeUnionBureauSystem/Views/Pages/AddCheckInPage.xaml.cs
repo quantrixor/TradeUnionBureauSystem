@@ -45,7 +45,12 @@ namespace TradeUnionBureauSystem.Views.Pages
                 if (userRole != null)
                 {
                     SaveButton.Visibility = Visibility.Visible;
-                    this.IsEnabled = false;
+                    this.IsEnabled = true; // Делаем страницу доступной
+                }
+                else
+                {
+                    SaveButton.Visibility = Visibility.Collapsed; // Или Hidden, если нужно скрыть кнопку
+                    this.IsEnabled = false; // Делаем страницу недоступной
                 }
             }
         }
@@ -80,8 +85,12 @@ namespace TradeUnionBureauSystem.Views.Pages
                 context.CheckIn.Add(newCheckIn);
                 context.SaveChanges();
                 MessageBox.Show("Запись о заезде успешно добавлена.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                NavigationService.GoBack();
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

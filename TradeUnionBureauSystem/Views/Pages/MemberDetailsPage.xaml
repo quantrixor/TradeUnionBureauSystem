@@ -15,16 +15,18 @@
                 <GradientStop Color="#397CFE" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
+        <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
 
         <Grid>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border Background="#165DE5" CornerRadius="20">
                     <StackPanel Orientation="Horizontal">
-                        <Border Width="250" Height="250" CornerRadius="15" ClipToBounds="True">
+                        <Border Width="250" Height="250" Margin="10" CornerRadius="15" ClipToBounds="True">
                             <Border.Background>
-                                <ImageBrush x:Name="UserPicture"/>
+                                <ImageBrush x:Name="UserPicture" Stretch="None" AlignmentX="Center" AlignmentY="Center"/>
                             </Border.Background>
                         </Border>
+
                         <StackPanel Width="400" VerticalAlignment="Center" Margin="10">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="ФИО:"/>
@@ -34,6 +36,11 @@
                                 <Label Content="Должность:"/>
                                 <ComboBox x:Name="cbxPosition" Width="250" IsEnabled="False" DisplayMemberPath="PositionName" SelectedValuePath="PositionID"/>
                             </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                <Label Content="Комиссия:"/>
+                                <ComboBox x:Name="cbxCommission" Width="250" IsEnabled="False" DisplayMemberPath="CommissionName" SelectedValuePath="CommissionID"/>
+                            </StackPanel>
+
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Академическая группа:"/>
                                 <TextBox x:Name="txbAcademicGroup" Width="250" IsReadOnly="True"/>

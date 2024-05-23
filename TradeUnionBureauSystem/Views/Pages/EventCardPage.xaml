@@ -17,8 +17,12 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border Background="#165DE5" CornerRadius="20" Width="800">
+                
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
+                    
                     <StackPanel Width="700" Margin="20">
+                        <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+
                         <TextBlock Text="Название мероприятия:" Foreground="LightGray" FontWeight="Bold" FontSize="24" Style="{StaticResource CustomTextBlockStyle}"/>
 
                         <TextBox x:Name="TitleTextBox" Height="50" TextWrapping="Wrap" FontWeight="Bold" FontSize="24" Foreground="White" Margin="0,0,0,10"/>

@@ -97,7 +97,6 @@ namespace TradeUnionBureauSystem.Views.Pages
 
                 context.SaveChanges();
                 MessageBox.Show("Мероприятие сохранено.", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
-                NavigationService.GoBack();
             }
         }
 
@@ -132,6 +131,11 @@ namespace TradeUnionBureauSystem.Views.Pages
                 UploadPhotoButton.Visibility = Visibility.Collapsed;
                 SaveEventButton.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

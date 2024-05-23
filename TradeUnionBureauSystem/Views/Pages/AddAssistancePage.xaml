@@ -15,7 +15,7 @@
                 <GradientStop Color="#397CFE" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-
+        <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border Background="#165DE5" CornerRadius="20" Width="800">
                 <StackPanel Margin="20">
@@ -56,7 +56,7 @@
                     </ComboBox>
 
                     <TextBlock Text="Сумма" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="SummaTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                    <TextBox x:Name="SummaTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White" PreviewTextInput="SummaTextBox_PreviewTextInput" DataObject.Pasting="SummaTextBox_Pasting">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>
@@ -65,7 +65,7 @@
                     </TextBox>
 
                     <TextBlock Text="№ протокола" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="ProtocolNumberTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                    <TextBox x:Name="ProtocolNumberTextBox" Margin="0,0,0,20" PreviewTextInput="ProtocolNumberTextBox_PreviewTextInput" Foreground="Black" Padding="5" Background="White">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>

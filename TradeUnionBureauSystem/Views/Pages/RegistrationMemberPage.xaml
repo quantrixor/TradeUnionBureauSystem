@@ -9,22 +9,29 @@
       Title="RegistrationMemberPage">
 
     <Grid>
+
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border Background="#165DE5" CornerRadius="20">
                 <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
+
                     <Border Width="350" Height="350" CornerRadius="15" ClipToBounds="True">
                         <Border.Background>
                             <ImageBrush x:Name="UserPicture"/>
                         </Border.Background>
                     </Border>
-                    <StackPanel Width="500" VerticalAlignment="Center" Margin="20">
+                    <StackPanel Width="520" VerticalAlignment="Center" Margin="20">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="ФИО: " Width="200"/>
                             <TextBox x:Name="txbFullName" Width="300"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
                             <Label Content="Должность: " Width="200"/>
                             <ComboBox x:Name="cbxPosition" DisplayMemberPath="PositionName" SelectedValuePath="PositionID" Width="300"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Комиссия:" Width="200"/>
+                            <ComboBox x:Name="cbxCommission" Width="300" DisplayMemberPath="CommissionName" SelectedValuePath="CommissionID"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Академическая группа: " Width="200"/>
@@ -32,7 +39,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Дата поступления: " Width="200"/>
-                            <TextBox x:Name="txbReceiptDate" Width="300"/>
+                            <DatePicker x:Name="txbReceiptDate" Width="300" Padding="10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Телефон: " Width="200"/>

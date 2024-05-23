@@ -33,7 +33,7 @@ namespace TradeUnionBureauSystem.Model
         public Nullable<int> UserID { get; set; }
         public string VKLink { get; set; }
         public byte[] Photo { get; set; }
-    
+
         public virtual Commissions Commissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Events> Events { get; set; }

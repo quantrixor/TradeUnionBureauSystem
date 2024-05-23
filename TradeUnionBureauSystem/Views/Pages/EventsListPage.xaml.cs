@@ -30,7 +30,6 @@ namespace TradeUnionBureauSystem.Views.Pages
             DeleteEventCommand = new RelayCommand<Events>(DeleteEvent);
             AddEventCommand = new RelayCommand(AddEvent);
 
-            LoadEvents();
 
             CheckUserRole();
         }
@@ -218,6 +217,11 @@ namespace TradeUnionBureauSystem.Views.Pages
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new EventCardPage(_currentUser, new Events()));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadEvents();
         }
     }
 }

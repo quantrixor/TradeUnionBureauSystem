@@ -40,7 +40,6 @@ namespace TradeUnionBureauSystem.Views.Pages
 
             DeleteMemberCommand = new RelayCommand<Members>(DeleteMember);
 
-            LoadMembers();
             CheckChairmanRole();
         }
 
@@ -144,6 +143,11 @@ namespace TradeUnionBureauSystem.Views.Pages
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadMembers();
         }
     }
 

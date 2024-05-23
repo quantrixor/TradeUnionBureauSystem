@@ -14,6 +14,8 @@ namespace TradeUnionBureauSystem.Views.Pages
     /// </summary>
     public partial class RegistrationMemberPage : Page
     {
+
+        private List<Commissions> _commissions;
         private List<Positions> _positions;
         private byte[] _selectedPhoto;
 
@@ -21,8 +23,16 @@ namespace TradeUnionBureauSystem.Views.Pages
         {
             InitializeComponent();
             LoadPositions();
+            LoadCommissions();
         }
-
+        private void LoadCommissions()
+        {
+            using (var context = new dbProfunionEntities())
+            {
+                _commissions = context.Commissions.ToList();
+                cbxCommission.ItemsSource = _commissions;
+            }
+        }
         private void LoadPositions()
         {
             using (var context = new dbProfunionEntities())
@@ -60,6 +70,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                     FirstName = firstName,
                     MiddleName = middleName,
                     PositionID = (int?)cbxPosition.SelectedValue,
+                    CommissionID = (int?)cbxCommission.SelectedValue,
                     AcademicGroup = txbAcademicGroup.Text,
                     EntryDate = DateTime.TryParse(txbReceiptDate.Text, out var date) ? date : DateTime.Now,
                     PhoneNumber = txbPhoneNumber.Text,
@@ -101,7 +112,6 @@ namespace TradeUnionBureauSystem.Views.Pages
 
                 MessageBox.Show("Новый член профбюро успешно зарегистрирован!", "Регистрация прошла успешно.",
                     MessageBoxButton.OK, MessageBoxImage.Information);
-                this.NavigationService.GoBack();
             }
         }
 
@@ -124,6 +134,11 @@ namespace TradeUnionBureauSystem.Views.Pages
                     UserPicture.ImageSource = image;
                 }
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
         }
     }
 }

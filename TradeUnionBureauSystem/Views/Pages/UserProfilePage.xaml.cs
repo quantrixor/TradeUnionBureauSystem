@@ -25,12 +25,16 @@ namespace TradeUnionBureauSystem.Views.Pages
         private Users _currentUser;
         private bool isEditing = false;
         private List<Positions> _positions;
+
+        private List<Commissions> _commissions;
         public UserProfilePage(Users currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
-            LoadUserData();
+
+            LoadCommissions();
             LoadPositions();
+            LoadUserData();
         }
 
         private void EditData_Click(object sender, RoutedEventArgs e)
@@ -40,8 +44,9 @@ namespace TradeUnionBureauSystem.Views.Pages
                 // Включить режим редактирования
                 txbFullName.IsReadOnly = false;
                 cbxPosition.IsEnabled = true;
+                cbxCommission.IsEnabled = true;
                 txbAcademicGroup.IsReadOnly = false;
-                txbReceiptDate.IsReadOnly = false;
+                txbReceiptDate.IsEnabled = true;
                 txbPhoneNumber.IsReadOnly = false;
                 txbVkLink.IsReadOnly = false;
                 ChangeImageButton.Visibility = Visibility.Visible;
@@ -62,6 +67,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                     member.FirstName = fullName.Length > 1 ? fullName[1] : member.FirstName;
                     member.MiddleName = fullName.Length > 2 ? fullName[2] : member.MiddleName;
                     member.PositionID = (int?)cbxPosition.SelectedValue;
+                    member.CommissionID = (int?)cbxCommission.SelectedValue;
                     member.AcademicGroup = txbAcademicGroup.Text;
                     member.EntryDate = DateTime.TryParse(txbReceiptDate.Text, out var date) ? date : member.EntryDate;
                     member.PhoneNumber = txbPhoneNumber.Text;
@@ -76,13 +82,22 @@ namespace TradeUnionBureauSystem.Views.Pages
 
                 txbFullName.IsReadOnly = true;
                 cbxPosition.IsEnabled = false;
+                cbxCommission.IsEnabled = false;
                 txbAcademicGroup.IsReadOnly = true;
-                txbReceiptDate.IsReadOnly = true;
+                txbReceiptDate.IsEnabled = false;
                 txbPhoneNumber.IsReadOnly = true;
                 txbVkLink.IsReadOnly = true;
                 ChangeImageButton.Visibility = Visibility.Collapsed;
                 EditData.Content = "Редактировать";
                 isEditing = false;
+            }
+        }
+        private void LoadCommissions()
+        {
+            using (var context = new dbProfunionEntities())
+            {
+                _commissions = context.Commissions.ToList();
+                cbxCommission.ItemsSource = _commissions;
             }
         }
 
@@ -103,6 +118,8 @@ namespace TradeUnionBureauSystem.Views.Pages
                 txbReceiptDate.Text = member.EntryDate?.ToString("d") ?? string.Empty;
                 txbPhoneNumber.Text = member.PhoneNumber;
                 txbVkLink.Text = member.VKLink;
+                cbxCommission.SelectedValue = member.CommissionID;
+                
 
                 // Загрузка изображения, если оно существует
                 if (member.Photo != null)

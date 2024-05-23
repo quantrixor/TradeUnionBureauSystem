@@ -15,7 +15,6 @@ namespace TradeUnionBureauSystem.Views.Pages
         {
             InitializeComponent();
             _currentUser = currentUser;
-            LoadCheckInData();
             CheckUserRole();
             SelectCurrentMonthTab();
         }
@@ -54,7 +53,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                            };
 
                 var checkInData = data.ToList();
-
+                Console.WriteLine($"Total records: {checkInData.Count}");
                 JanuaryDataGrid.ItemsSource = checkInData.Where(c => c.StartCheckIn.Month == 1).ToList();
                 FebruaryDataGrid.ItemsSource = checkInData.Where(c => c.StartCheckIn.Month == 2).ToList();
                 MarchDataGrid.ItemsSource = checkInData.Where(c => c.StartCheckIn.Month == 3).ToList();
@@ -123,6 +122,10 @@ namespace TradeUnionBureauSystem.Views.Pages
                 UpdateTotalCount(currentData);
             }
         }
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
 
         private void UpdateTotalCount(IEnumerable<CheckInInfo> data)
         {
@@ -184,6 +187,11 @@ namespace TradeUnionBureauSystem.Views.Pages
                 case "Декабрь": return 12;
                 default: return 0;
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadCheckInData();
         }
     }
 
