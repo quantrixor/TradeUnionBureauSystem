@@ -35,8 +35,10 @@
                                 <Setter Property="BorderBrush" Value="#FF505050"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
+                        
                     </ControlTemplate>
                 </Setter.Value>
+                    
             </Setter>
         </Style>
 

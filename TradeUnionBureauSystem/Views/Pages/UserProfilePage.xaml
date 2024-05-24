@@ -18,43 +18,49 @@
 
         <Grid>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Border Background="#165DE5" CornerRadius="20">
+                <Border Background="#165DE5" CornerRadius="20" Padding="20" Width="850">
                     <Grid>
-                        <Button Margin="10,10,0,0" Style="{StaticResource BackButtonStyle}" x:Name="BackButton" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="240" Height="240" Margin="10" CornerRadius="15" ClipToBounds="True">
+                        <Button Margin="0,0,0,0" Style="{StaticResource BackButtonStyle}" x:Name="BackButton" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <StackPanel Orientation="Horizontal" Margin="10">
+                            <Border Width="250" Height="300" Margin="10" CornerRadius="15" ClipToBounds="True">
                                 <Border.Background>
                                     <ImageBrush x:Name="UserPicture" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
                                 </Border.Background>
                             </Border>
 
-                            <StackPanel Width="400" VerticalAlignment="Center" Margin="10">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="ФИО:"/>
+                            <StackPanel Width="500" VerticalAlignment="Center" Margin="10">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="ФИО:" Width="180"/>
                                     <TextBox x:Name="txbFullName" Width="250" IsReadOnly="True" />
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Должность:" Width="100"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="Должность:" Width="180"/>
                                     <ComboBox x:Name="cbxPosition" Width="250" IsEnabled="False" DisplayMemberPath="PositionName" SelectedValuePath="PositionID"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Content="Комиссия:" Width="100"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="Комиссия:" Width="180"/>
                                     <ComboBox x:Name="cbxCommission" Width="250" IsEnabled="False" DisplayMemberPath="CommissionName" SelectedValuePath="CommissionID"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Академическая группа:"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="Академическая группа:" Width="180"/>
                                     <TextBox x:Name="txbAcademicGroup" Width="250" IsReadOnly="True"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Дата вступления в профсоюз:"/>
-                                    <DatePicker x:Name="txbReceiptDate" Width="200" IsEnabled="False" Padding="10"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="Дата вступления в профсоюз:" Width="180"/>
+                                    <DatePicker x:Name="txbReceiptDate" Width="250" IsEnabled="False" Padding="10"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Номер телефона:"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="Номер телефона:" Width="180"/>
                                     <TextBox x:Name="txbPhoneNumber" Width="250" IsReadOnly="True"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Связаться во ВКонтакте:"/>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="Связаться во ВКонтакте:" Width="180"/>
                                     <TextBox x:Name="txbVkLink" Width="250" IsReadOnly="True"/>
                                 </StackPanel>
                             </StackPanel>
@@ -75,7 +81,6 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-
             </StackPanel>
         </Grid>
     </Grid>

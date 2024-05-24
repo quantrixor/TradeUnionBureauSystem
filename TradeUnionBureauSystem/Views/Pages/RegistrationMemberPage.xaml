@@ -13,7 +13,13 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border Background="#165DE5" CornerRadius="20">
                 <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
+                    <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                     <Border Width="240" Height="240" Margin="10" CornerRadius="15" ClipToBounds="True">
                         <Border.Background>
                             <ImageBrush x:Name="UserPicture" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>

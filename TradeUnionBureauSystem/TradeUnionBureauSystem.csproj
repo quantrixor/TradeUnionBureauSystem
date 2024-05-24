@@ -123,6 +123,7 @@
     <Compile Include="Views\Pages\AddCheckInPage.xaml.cs">
       <DependentUpon>AddCheckInPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\BooleanToVisibilityConverter.cs" />
     <Compile Include="Views\Pages\ByteArrayToImageConverter.cs" />
     <Compile Include="Views\Pages\EventCardPage.xaml.cs">
       <DependentUpon>EventCardPage.xaml</DependentUpon>

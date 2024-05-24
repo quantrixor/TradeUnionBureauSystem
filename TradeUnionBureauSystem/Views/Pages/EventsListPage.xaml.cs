@@ -10,16 +10,27 @@ using TradeUnionBureauSystem.Model;
 
 namespace TradeUnionBureauSystem.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для EventsListPage.xaml
-    /// </summary>
-    public partial class EventsListPage : Page
+    public partial class EventsListPage : Page, INotifyPropertyChanged
     {
         private Users _currentUser;
         public ObservableCollection<Events> PastEvents { get; set; }
         public ObservableCollection<Events> UpcomingEvents { get; set; }
         public ICommand DeleteEventCommand { get; }
         public ICommand AddEventCommand { get; }
+
+        private bool _canDeleteEvents;
+        public bool CanDeleteEvents
+        {
+            get => _canDeleteEvents;
+            set
+            {
+                if (_canDeleteEvents != value)
+                {
+                    _canDeleteEvents = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public EventsListPage(Users currentUser)
         {
@@ -29,7 +40,6 @@ namespace TradeUnionBureauSystem.Views.Pages
 
             DeleteEventCommand = new RelayCommand<Events>(DeleteEvent);
             AddEventCommand = new RelayCommand(AddEvent);
-
 
             CheckUserRole();
         }
@@ -65,14 +75,9 @@ namespace TradeUnionBureauSystem.Views.Pages
                                 where ur.UserID == _currentUser.UserID && allowedRoles.Contains(r.RoleName)
                                 select ur;
 
-                if (userRoles.Any())
-                {
-                    AddNewEvent.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    AddNewEvent.Visibility = Visibility.Collapsed;
-                }
+                CanDeleteEvents = userRoles.Any();
+
+                AddNewEvent.Visibility = CanDeleteEvents ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 

@@ -10,6 +10,7 @@
       Title="EventsListPage">
 
     <Page.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <DataTemplate x:Key="EventTemplate">
             <Border Background="#165DE5" Margin="5" Width="780" Padding="10" CornerRadius="10">
                 <Grid>
@@ -21,7 +22,10 @@
                         <TextBlock Text="{Binding Title}" FontWeight="Bold" TextAlignment="Center" FontSize="20" Foreground="White"/>
                         <TextBlock Text="{Binding DateOfEvent, StringFormat='{}{0:dd.MM.yyyy}'}" TextAlignment="Center" FontSize="16" Foreground="White"/>
                     </StackPanel>
-                    <Button Grid.Column="1" Content="X" Command="{Binding DataContext.DeleteEventCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding}" Margin="5" Width="30" Height="30">
+                    <Button Grid.Column="1" Content="X" x:Name="btnDelete" 
+                            Command="{Binding DataContext.DeleteEventCommand, RelativeSource={RelativeSource AncestorType=Page}}" 
+                            CommandParameter="{Binding}" Margin="5" Width="30" Height="30" 
+                            Visibility="{Binding DataContext.CanDeleteEvents, RelativeSource={RelativeSource AncestorType=Page}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button.Resources>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{x:Null}"/>
@@ -38,7 +42,8 @@
             </Border>
         </DataTemplate>
     </Page.Resources>
-    
+
+
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
