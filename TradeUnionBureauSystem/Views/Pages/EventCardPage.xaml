@@ -17,28 +17,31 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border Background="#165DE5" CornerRadius="20" Width="800">
-                
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
-                    
-                    <StackPanel Width="700" Margin="20">
-                        <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                <StackPanel>
+                    <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
+                        <StackPanel Orientation="Horizontal">
 
-                        <TextBlock Text="Название мероприятия:" Foreground="LightGray" FontWeight="Bold" FontSize="24" Style="{StaticResource CustomTextBlockStyle}"/>
+                            <StackPanel Width="700" Margin="20">
 
-                        <TextBox x:Name="TitleTextBox" Height="50" TextWrapping="Wrap" FontWeight="Bold" FontSize="24" Foreground="White" Margin="0,0,0,10"/>
-                        <TextBlock Text="Информация о мероприятии:" Foreground="LightGray" Style="{StaticResource CustomTextBlockStyle}"/>
-                        <TextBox x:Name="InfoTextBox" FontSize="18" Height="auto" TextWrapping="Wrap" Foreground="White" Margin="0,0,0,10"/>
-                        <DatePicker x:Name="DatePicker" FontSize="18" Margin="0,0,0,10"/>
-                        <Image x:Name="EventImage" Height="200" Stretch="Uniform" Margin="0,10,0,10"/>
-                        <Button Content="Выбрать изображение" x:Name="UploadPhotoButton" Height="40" Margin="20" Width="200" Style="{StaticResource CustomButtonStyle}" Click="UploadPhoto_Click">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="15"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                    </StackPanel>
-                </ScrollViewer>
+                                <TextBlock Text="Название мероприятия:" Foreground="LightGray" FontWeight="Bold" FontSize="24" Style="{StaticResource CustomTextBlockStyle}"/>
+
+                                <TextBox x:Name="TitleTextBox" Height="50" TextWrapping="Wrap" FontWeight="Bold" FontSize="24" Foreground="White" Margin="0,0,0,10"/>
+                                <TextBlock Text="Информация о мероприятии:" Foreground="LightGray" Style="{StaticResource CustomTextBlockStyle}"/>
+                                <TextBox x:Name="InfoTextBox" FontSize="18" Height="auto" TextWrapping="Wrap" Foreground="White" Margin="0,0,0,10"/>
+                                <DatePicker x:Name="DatePicker" FontSize="18" Margin="0,0,0,10"/>
+                                <Image x:Name="EventImage" Height="200" Stretch="Uniform" Margin="0,10,0,10"/>
+                                <Button Content="Выбрать изображение" x:Name="UploadPhotoButton" Height="40" Margin="20" Width="200" Style="{StaticResource CustomButtonStyle}" Click="UploadPhoto_Click">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="15"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </StackPanel>
             </Border>
             <Button Content="Сохранить" x:Name="SaveEventButton" Height="40" Margin="20" Width="200" Style="{StaticResource CustomButtonStyle}" Click="SaveEvent_Click">
                 <Button.Resources>

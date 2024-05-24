@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1080"
+      d:DesignHeight="700" d:DesignWidth="1080"
       Title="AddAssistancePage">
 
     <Grid>
@@ -15,63 +15,65 @@
                 <GradientStop Color="#397CFE" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border Background="#165DE5" CornerRadius="20" Width="800">
-                <StackPanel Margin="20">
-                    <TextBlock Text="Фамилия" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="LastNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                <StackPanel>
+                    <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" Margin="10"/>
+                    <StackPanel Margin="20">
+                        <TextBlock Text="Фамилия" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="LastNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
 
-                    <TextBlock Text="Имя" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                        <TextBlock Text="Имя" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
 
-                    <TextBlock Text="Отчество" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="MiddleNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                        <TextBlock Text="Отчество" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="MiddleNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
 
-                    <TextBlock Text="Критерии выплаты" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <ComboBox x:Name="PaymentCriteriaComboBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <ComboBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </ComboBox.Resources>
-                    </ComboBox>
+                        <TextBlock Text="Критерии выплаты" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <ComboBox x:Name="PaymentCriteriaComboBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <ComboBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </ComboBox.Resources>
+                        </ComboBox>
 
-                    <TextBlock Text="Сумма" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="SummaTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White" PreviewTextInput="SummaTextBox_PreviewTextInput" DataObject.Pasting="SummaTextBox_Pasting">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                        <TextBlock Text="Сумма" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="SummaTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White" PreviewTextInput="SummaTextBox_PreviewTextInput" DataObject.Pasting="SummaTextBox_Pasting">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
 
-                    <TextBlock Text="№ протокола" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="ProtocolNumberTextBox" Margin="0,0,0,20" PreviewTextInput="ProtocolNumberTextBox_PreviewTextInput" Foreground="Black" Padding="5" Background="White">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                        <TextBlock Text="№ протокола" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="ProtocolNumberTextBox" Margin="0,0,0,20" PreviewTextInput="ProtocolNumberTextBox_PreviewTextInput" Foreground="Black" Padding="5" Background="White">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
                 </StackPanel>
             </Border>
             <Button Margin="0,10,0,0" Width="300" Content="Сохранить" Click="SaveButton_Click" Style="{StaticResource CustomButtonStyle}">

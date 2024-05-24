@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1080"
+      d:DesignHeight="700" d:DesignWidth="1080"
       Title="AddCheckInPage">
 
     <Grid>
@@ -15,53 +15,56 @@
                 <GradientStop Color="#397CFE" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
             <Border Background="#165DE5" CornerRadius="20" Width="800">
-                <StackPanel Margin="20">
-                    <TextBlock Text="Фамилия" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="LastNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                <StackPanel >
+                    <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" Margin="10"/>
+                    <StackPanel Margin="20">
+                        <TextBlock Text="Фамилия" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="LastNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
 
-                    <TextBlock Text="Имя" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                        <TextBlock Text="Имя" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
 
-                    <TextBlock Text="Отчество" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <TextBox x:Name="MiddleNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                        <TextBlock Text="Отчество" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <TextBox x:Name="MiddleNameTextBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
 
-                    <TextBlock Text="Начало заезда" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <DatePicker x:Name="StartCheckInDatePicker" Margin="0,0,0,20"/>
+                        <TextBlock Text="Начало заезда" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <DatePicker x:Name="StartCheckInDatePicker" Margin="0,0,0,20"/>
 
-                    <TextBlock Text="Конец заезда" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <DatePicker x:Name="EndCheckInDatePicker" Margin="0,0,0,20"/>
+                        <TextBlock Text="Конец заезда" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <DatePicker x:Name="EndCheckInDatePicker" Margin="0,0,0,20"/>
 
-                    <TextBlock Text="Проживание" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
-                    <ComboBox x:Name="AccommodationComboBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
-                        <ComboBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"/>
-                            </Style>
-                        </ComboBox.Resources>
-                    </ComboBox>
+                        <TextBlock Text="Проживание" Margin="0,0,0,10" Style="{StaticResource CustomTextBlockStyle}"/>
+                        <ComboBox x:Name="AccommodationComboBox" Margin="0,0,0,20" Foreground="Black" Padding="5" Background="White">
+                            <ComboBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                </Style>
+                            </ComboBox.Resources>
+                        </ComboBox>
 
+                    </StackPanel>
                 </StackPanel>
             </Border>
             <Button x:Name="SaveButton" Margin="0,10,0,0" Width="300"  Content="Сохранить" Click="SaveButton_Click" Style="{StaticResource CustomButtonStyle}">
@@ -71,6 +74,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
+
         </StackPanel>
     </Grid>
 </Page>

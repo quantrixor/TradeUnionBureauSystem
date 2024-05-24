@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1080"
+      d:DesignHeight="550" d:DesignWidth="1080"
       Title="RegistrationMemberPage">
 
     <Grid>
@@ -14,7 +14,6 @@
             <Border Background="#165DE5" CornerRadius="20">
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
-
                     <Border Width="240" Height="240" Margin="10" CornerRadius="15" ClipToBounds="True">
                         <Border.Background>
                             <ImageBrush x:Name="UserPicture" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>

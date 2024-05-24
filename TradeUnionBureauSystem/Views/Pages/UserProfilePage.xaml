@@ -33,11 +33,11 @@
                                     <TextBox x:Name="txbFullName" Width="250" IsReadOnly="True" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="Должность:"/>
+                                    <Label Content="Должность:" Width="100"/>
                                     <ComboBox x:Name="cbxPosition" Width="250" IsEnabled="False" DisplayMemberPath="PositionName" SelectedValuePath="PositionID"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="10">
-                                    <Label Content="Комиссия:"/>
+                                <StackPanel Orientation="Horizontal" >
+                                    <Label Content="Комиссия:" Width="100"/>
                                     <ComboBox x:Name="cbxCommission" Width="250" IsEnabled="False" DisplayMemberPath="CommissionName" SelectedValuePath="CommissionID"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
