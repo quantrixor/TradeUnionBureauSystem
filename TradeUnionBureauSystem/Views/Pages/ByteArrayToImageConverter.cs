@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
@@ -20,7 +21,16 @@ namespace TradeUnionBureauSystem.Views.Pages
                     image.StreamSource = ms;
                     image.EndInit();
                 }
-                return image;
+
+                // Получаем размеры изображения
+                int width = image.PixelWidth;
+                int height = image.PixelHeight;
+
+                // Обрезаем изображение по грудь
+                int croppedHeight = (int)(height * 0.5); // Обрезаем 50% от высоты изображения, это можно настроить
+                CroppedBitmap croppedImage = new CroppedBitmap(image, new Int32Rect(0, 0, width, croppedHeight));
+
+                return croppedImage;
             }
             return null;
         }

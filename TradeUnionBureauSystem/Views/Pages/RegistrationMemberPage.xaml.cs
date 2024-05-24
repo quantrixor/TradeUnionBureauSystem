@@ -82,6 +82,7 @@ namespace TradeUnionBureauSystem.Views.Pages
 
                 // Назначение роли новому пользователю в зависимости от должности
                 string selectedPosition = (cbxPosition.SelectedItem as Positions)?.PositionName;
+                string selectedCommission = (cbxCommission.SelectedItem as Commissions)?.CommissionName;
                 Roles assignedRole = null;
 
                 if (selectedPosition == "Председатель")
@@ -94,8 +95,31 @@ namespace TradeUnionBureauSystem.Views.Pages
                 }
                 else if (selectedPosition == "Руководитель")
                 {
-                    // Назначение роли по умолчанию для руководителей
-                    assignedRole = context.Roles.FirstOrDefault(r => r.RoleName == "Руководитель культурно-массовой комиссии");
+                    // Назначение роли в зависимости от выбранной комиссии
+                    if (selectedCommission != null)
+                    {
+                        switch (selectedCommission)
+                        {
+                            case "Культурно-массовая комиссия":
+                                assignedRole = context.Roles.FirstOrDefault(r => r.RoleName == "Руководитель культурно-массовой комиссии");
+                                break;
+                            case "Жилищно-бытовая комиссия":
+                                assignedRole = context.Roles.FirstOrDefault(r => r.RoleName == "Руководитель жилищно-бытовой комиссии");
+                                break;
+                            case "Информационная комиссия":
+                                assignedRole = context.Roles.FirstOrDefault(r => r.RoleName == "Руководитель информационной комиссии");
+                                break;
+                            case "Комиссия общественного контроля":
+                                assignedRole = context.Roles.FirstOrDefault(r => r.RoleName == "Руководитель комиссии общественного контроля");
+                                break;
+                            case "Спортивно-оздоровительная комиссия":
+                                assignedRole = context.Roles.FirstOrDefault(r => r.RoleName == "Руководитель спортивно-оздоровительной комиссии");
+                                break;
+                            default:
+                                assignedRole = context.Roles.FirstOrDefault(r => r.RoleName == "Руководитель культурно-массовой комиссии");
+                                break;
+                        }
+                    }
                 }
 
                 if (assignedRole != null)

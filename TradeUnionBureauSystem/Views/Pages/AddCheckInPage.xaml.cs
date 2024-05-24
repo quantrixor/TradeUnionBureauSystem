@@ -18,7 +18,6 @@ namespace TradeUnionBureauSystem.Views.Pages
             _currentUser = currentUser;
             _monthId = monthId;
             LoadAccommodationOptions();
-            CheckUserRole();
         }
 
         private void LoadAccommodationOptions()
@@ -29,29 +28,6 @@ namespace TradeUnionBureauSystem.Views.Pages
                 AccommodationComboBox.ItemsSource = accommodations;
                 AccommodationComboBox.DisplayMemberPath = "AccommodationType";
                 AccommodationComboBox.SelectedValuePath = "AccommodationID";
-            }
-        }
-
-        private void CheckUserRole()
-        {
-            using (var context = new dbProfunionEntities())
-            {
-                var allowedRoles = new List<string> { "Председатель", "Заместитель председателя", "Руководитель спортивно-оздоровительной комиссии" };
-                var userRole = (from ur in context.UserRoles
-                                join r in context.Roles on ur.RoleID equals r.RoleID
-                                where ur.UserID == _currentUser.UserID && allowedRoles.Contains(r.RoleName)
-                                select r.RoleName).FirstOrDefault();
-
-                if (userRole != null)
-                {
-                    SaveButton.Visibility = Visibility.Visible;
-                    this.IsEnabled = true; // Делаем страницу доступной
-                }
-                else
-                {
-                    SaveButton.Visibility = Visibility.Collapsed; // Или Hidden, если нужно скрыть кнопку
-                    this.IsEnabled = false; // Делаем страницу недоступной
-                }
             }
         }
 

@@ -80,35 +80,73 @@ namespace TradeUnionBureauSystem.Views.Pages
         {
             if (member != null)
             {
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить {member.LastName} {member.FirstName} {member.MiddleName}?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
+                using (var context = new dbProfunionEntities())
                 {
-                    using (var context = new dbProfunionEntities())
+                    // Загрузим объект из контекста перед удалением
+                    var memberToDelete = context.Members.FirstOrDefault(m => m.MemberID == member.MemberID);
+
+                    if (memberToDelete != null)
                     {
-                        // Загрузим объект из контекста перед удалением
-                        var memberToDelete = context.Members.FirstOrDefault(m => m.MemberID == member.MemberID);
-
-                        if (memberToDelete != null)
+                        // Проверяем наличие запланированных мероприятий
+                        var events = context.Events.Where(e => e.MemberResponsibleID == memberToDelete.MemberID).ToList();
+                        if (events.Any())
                         {
-                            var userRoles = context.UserRoles.Where(ur => ur.UserID == memberToDelete.UserID);
-                            context.UserRoles.RemoveRange(userRoles);
-
-                            var user = context.Users.FirstOrDefault(u => u.UserID == memberToDelete.UserID);
-                            if (user != null)
+                            var result = MessageBox.Show($"У этого пользователя есть запланированные мероприятия. Вы уверены, что хотите удалить {member.LastName} {member.FirstName} {member.MiddleName}?\nМероприятия будут сохранены, но ответственный будет изменен.", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                            if (result == MessageBoxResult.Yes)
                             {
-                                context.Users.Remove(user);
+                                // Обновляем ответственного в запланированных мероприятиях
+                                foreach (var ev in events)
+                                {
+                                    ev.MemberResponsibleID = null; // Или любое другое значение, если нужно задать конкретное значение
+                                }
+
+                                // Удаляем связанные записи в UserRoles
+                                var userRoles = context.UserRoles.Where(ur => ur.UserID == memberToDelete.UserID);
+                                context.UserRoles.RemoveRange(userRoles);
+
+                                // Удаляем запись из Users
+                                var user = context.Users.FirstOrDefault(u => u.UserID == memberToDelete.UserID);
+                                if (user != null)
+                                {
+                                    context.Users.Remove(user);
+                                }
+
+                                // Удаляем запись из Members
+                                context.Members.Remove(memberToDelete);
+                                context.SaveChanges();
+
+                                LoadMembers();
+                                MessageBox.Show("Член профсоюза успешно удален, мероприятия обновлены.", "Удаление завершено", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
-
-                            context.Members.Remove(memberToDelete);
-                            context.SaveChanges();
-
-                            LoadMembers();
-                            MessageBox.Show("Член профсоюза успешно удален.", "Удаление завершено", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Не удалось найти участника в базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            var result = MessageBox.Show($"Вы уверены, что хотите удалить {member.LastName} {member.FirstName} {member.MiddleName}?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                // Удаляем связанные записи в UserRoles
+                                var userRoles = context.UserRoles.Where(ur => ur.UserID == memberToDelete.UserID);
+                                context.UserRoles.RemoveRange(userRoles);
+
+                                // Удаляем запись из Users
+                                var user = context.Users.FirstOrDefault(u => u.UserID == memberToDelete.UserID);
+                                if (user != null)
+                                {
+                                    context.Users.Remove(user);
+                                }
+
+                                // Удаляем запись из Members
+                                context.Members.Remove(memberToDelete);
+                                context.SaveChanges();
+
+                                LoadMembers();
+                                MessageBox.Show("Член профсоюза успешно удален.", "Удаление завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не удалось найти участника в базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }

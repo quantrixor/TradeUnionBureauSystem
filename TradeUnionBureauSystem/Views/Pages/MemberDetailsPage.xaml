@@ -23,7 +23,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Border Width="250" Height="250" Margin="10" CornerRadius="15" ClipToBounds="True">
                             <Border.Background>
-                                <ImageBrush x:Name="UserPicture" Stretch="None" AlignmentX="Center" AlignmentY="Center"/>
+                                <ImageBrush x:Name="UserPicture" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
                             </Border.Background>
                         </Border>
 

@@ -15,9 +15,9 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource BackButtonStyle}" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
 
-                    <Border Width="350" Height="350" CornerRadius="15" ClipToBounds="True">
+                    <Border Width="240" Height="240" Margin="10" CornerRadius="15" ClipToBounds="True">
                         <Border.Background>
-                            <ImageBrush x:Name="UserPicture"/>
+                            <ImageBrush x:Name="UserPicture" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
                         </Border.Background>
                     </Border>
                     <StackPanel Width="520" VerticalAlignment="Center" Margin="20">

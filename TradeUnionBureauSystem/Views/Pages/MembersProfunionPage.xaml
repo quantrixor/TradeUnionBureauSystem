@@ -20,8 +20,14 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Border Background="LightGray" Width="60" Height="60" Margin="5" CornerRadius="30" ClipToBounds="True">
-                        <Image Source="{Binding Photo, Converter={StaticResource ByteArrayToImageConverter}}"  Stretch="UniformToFill"/>
+                    <Border Width="60" Height="60" Margin="5" CornerRadius="30" ClipToBounds="True">
+                        <Border.Background>
+                            <VisualBrush Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center">
+                                <VisualBrush.Visual>
+                                    <Image Source="{Binding Photo, Converter={StaticResource ByteArrayToImageConverter}}" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.Background>
                     </Border>
                     <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="{Binding FullName}" FontWeight="Bold" TextAlignment="Center" FontSize="20" Foreground="White"/>

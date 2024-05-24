@@ -10,14 +10,68 @@ namespace TradeUnionBureauSystem.Views.Pages
     public partial class MaterialHelpPage : Page
     {
         private Users _currentUser;
+        private List<AssistanceInfo> currentData = null;
 
         public MaterialHelpPage(Users currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
-            LoadAssistanceData();
             CheckUserRole();
             SelectCurrentMonthTab();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadAssistanceData();
+            SelectCurrentMonthTab();
+            UpdateCurrentData();
+            UpdateTotalSum(currentData);
+        }
+
+        private void UpdateCurrentData()
+        {
+            if (MonthTabControl.SelectedItem is TabItem selectedTab)
+            {
+                switch (selectedTab.Name)
+                {
+                    case "JanuaryTab":
+                        currentData = JanuaryDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "FebruaryTab":
+                        currentData = FebruaryDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "MarchTab":
+                        currentData = MarchDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "AprilTab":
+                        currentData = AprilDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "MayTab":
+                        currentData = MayDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "JuneTab":
+                        currentData = JuneDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "JulyTab":
+                        currentData = JuleDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "AugustTab":
+                        currentData = AugustDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "SeptemberTab":
+                        currentData = SeptemberDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "OctoberTab":
+                        currentData = OctoberDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "NovemberTab":
+                        currentData = NovemberDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                    case "DecemberTab":
+                        currentData = DecemberDataGrid.ItemsSource as List<AssistanceInfo>;
+                        break;
+                }
+            }
         }
 
         private void CheckUserRole()
@@ -84,46 +138,7 @@ namespace TradeUnionBureauSystem.Views.Pages
         {
             if (MonthTabControl.SelectedItem is TabItem selectedTab)
             {
-                List<AssistanceInfo> currentData = null;
-                switch (selectedTab.Name)
-                {
-                    case "JanuaryTab":
-                        currentData = JanuaryDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "FebruaryTab":
-                        currentData = FebruaryDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "MarchTab":
-                        currentData = MarchDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "AprilTab":
-                        currentData = AprilDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "MayTab":
-                        currentData = MayDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "JuneTab":
-                        currentData = JuneDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "JulyTab":
-                        currentData = JuleDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "AugustTab":
-                        currentData = AugustDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "SeptemberTab":
-                        currentData = SeptemberDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "OctoberTab":
-                        currentData = OctoberDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "NovemberTab":
-                        currentData = NovemberDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                    case "DecemberTab":
-                        currentData = DecemberDataGrid.ItemsSource as List<AssistanceInfo>;
-                        break;
-                }
+                UpdateCurrentData();
                 UpdateTotalSum(currentData);
             }
         }
@@ -189,6 +204,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                 default: return 0;
             }
         }
+
     }
 
     public class AssistanceInfo

@@ -11,19 +11,19 @@ namespace TradeUnionBureauSystem.Views.Pages
     {
         private Users _currentUser;
 
+        private List<CheckInInfo> currentData = null;
         public ProfilaktoryPage(Users currentUser)
         {
             InitializeComponent();
             _currentUser = currentUser;
             CheckUserRole();
-            SelectCurrentMonthTab();
         }
 
         private void CheckUserRole()
         {
             using (var context = new dbProfunionEntities())
             {
-                var allowedRoles = new List<string> { "Председатель", "Заместитель председателя", "Руководитель культурно-массовой комиссии" };
+                var allowedRoles = new List<string> { "Председатель", "Заместитель председателя", "Руководитель спортивно-оздоровительной комиссии" };
                 var userRole = (from ur in context.UserRoles
                                 join r in context.Roles on ur.RoleID equals r.RoleID
                                 where ur.UserID == _currentUser.UserID && allowedRoles.Contains(r.RoleName)
@@ -53,7 +53,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                            };
 
                 var checkInData = data.ToList();
-                Console.WriteLine($"Total records: {checkInData.Count}");
+                foreach (var check in checkInData) { }
                 JanuaryDataGrid.ItemsSource = checkInData.Where(c => c.StartCheckIn.Month == 1).ToList();
                 FebruaryDataGrid.ItemsSource = checkInData.Where(c => c.StartCheckIn.Month == 2).ToList();
                 MarchDataGrid.ItemsSource = checkInData.Where(c => c.StartCheckIn.Month == 3).ToList();
@@ -74,12 +74,10 @@ namespace TradeUnionBureauSystem.Views.Pages
             var currentMonth = DateTime.Now.Month;
             MonthTabControl.SelectedIndex = currentMonth - 1;
         }
-
-        private void MonthTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UpdateCurrentData()
         {
             if (MonthTabControl.SelectedItem is TabItem selectedTab)
             {
-                List<CheckInInfo> currentData = null;
                 switch (selectedTab.Name)
                 {
                     case "JanuaryTab":
@@ -119,6 +117,14 @@ namespace TradeUnionBureauSystem.Views.Pages
                         currentData = DecemberDataGrid.ItemsSource as List<CheckInInfo>;
                         break;
                 }
+            }
+        }
+
+        private void MonthTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MonthTabControl.SelectedItem is TabItem selectedTab)
+            {
+                UpdateCurrentData();
                 UpdateTotalCount(currentData);
             }
         }
@@ -192,6 +198,9 @@ namespace TradeUnionBureauSystem.Views.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LoadCheckInData();
+            SelectCurrentMonthTab();
+            UpdateCurrentData();
+            UpdateTotalCount(currentData);
         }
     }
 

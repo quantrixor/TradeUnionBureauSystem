@@ -15,48 +15,50 @@
                 <GradientStop Color="#397CFE" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        
+
         <Grid>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border Background="#165DE5" CornerRadius="20">
-                    <StackPanel Orientation="Horizontal">
-                        <Border Width="250" Height="250" Margin="10" CornerRadius="15" ClipToBounds="True">
-                            <Border.Background>
-                                <ImageBrush x:Name="UserPicture" Stretch="None" AlignmentX="Center" AlignmentY="Center"/>
-                            </Border.Background>
-                        </Border>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="240" Height="240" Margin="10" CornerRadius="15" ClipToBounds="True">
+                                <Border.Background>
+                                    <ImageBrush x:Name="UserPicture" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
+                                </Border.Background>
+                            </Border>
 
-                        <StackPanel Width="400" VerticalAlignment="Center" Margin="10">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="ФИО:"/>
-                                <TextBox x:Name="txbFullName" Width="250" IsReadOnly="True" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Должность:"/>
-                                <ComboBox x:Name="cbxPosition" Width="250" IsEnabled="False" DisplayMemberPath="PositionName" SelectedValuePath="PositionID"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <Label Content="Комиссия:"/>
-                                <ComboBox x:Name="cbxCommission" Width="250" IsEnabled="False" DisplayMemberPath="CommissionName" SelectedValuePath="CommissionID"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Академическая группа:"/>
-                                <TextBox x:Name="txbAcademicGroup" Width="250" IsReadOnly="True"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Дата вступления в профсоюз:"/>
-                                <DatePicker x:Name="txbReceiptDate" Width="200" IsEnabled="False" Padding="10"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Номер телефона:"/>
-                                <TextBox x:Name="txbPhoneNumber" Width="250" IsReadOnly="True"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Связаться во ВКонтакте:"/>
-                                <TextBox x:Name="txbVkLink" Width="250" IsReadOnly="True"/>
+                            <StackPanel Width="400" VerticalAlignment="Center" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="ФИО:"/>
+                                    <TextBox x:Name="txbFullName" Width="250" IsReadOnly="True" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Должность:"/>
+                                    <ComboBox x:Name="cbxPosition" Width="250" IsEnabled="False" DisplayMemberPath="PositionName" SelectedValuePath="PositionID"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Label Content="Комиссия:"/>
+                                    <ComboBox x:Name="cbxCommission" Width="250" IsEnabled="False" DisplayMemberPath="CommissionName" SelectedValuePath="CommissionID"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Академическая группа:"/>
+                                    <TextBox x:Name="txbAcademicGroup" Width="250" IsReadOnly="True"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Дата вступления в профсоюз:"/>
+                                    <DatePicker x:Name="txbReceiptDate" Width="200" IsEnabled="False" Padding="10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Номер телефона:"/>
+                                    <TextBox x:Name="txbPhoneNumber" Width="250" IsReadOnly="True"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Связаться во ВКонтакте:"/>
+                                    <TextBox x:Name="txbVkLink" Width="250" IsReadOnly="True"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                    </Grid>
                 </Border>
                 <Button Style="{StaticResource CustomButtonStyle}" Name="EditData" Click="EditData_Click" Margin="0,40,0,0" Width="300" Height="40" Content="Редактировать">
                     <Button.Resources>
