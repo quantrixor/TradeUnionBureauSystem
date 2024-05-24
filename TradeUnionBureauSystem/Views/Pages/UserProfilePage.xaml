@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TradeUnionBureauSystem.Views.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d" Loaded="Page_Loaded"
       d:DesignHeight="600" d:DesignWidth="1080"
       Title="UserProfilePage">
 
@@ -20,6 +20,7 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border Background="#165DE5" CornerRadius="20">
                     <Grid>
+                        <Button Margin="10,10,0,0" Style="{StaticResource BackButtonStyle}" x:Name="BackButton" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <StackPanel Orientation="Horizontal">
                             <Border Width="240" Height="240" Margin="10" CornerRadius="15" ClipToBounds="True">
                                 <Border.Background>

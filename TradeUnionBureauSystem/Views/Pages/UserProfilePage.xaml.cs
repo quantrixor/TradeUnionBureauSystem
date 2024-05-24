@@ -31,12 +31,16 @@ namespace TradeUnionBureauSystem.Views.Pages
         {
             InitializeComponent();
             _currentUser = currentUser;
-
             LoadCommissions();
             LoadPositions();
             LoadUserData();
         }
 
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            VisibleBack();
+        }
         private void EditData_Click(object sender, RoutedEventArgs e)
         {
             if (!isEditing)
@@ -119,7 +123,7 @@ namespace TradeUnionBureauSystem.Views.Pages
                 txbPhoneNumber.Text = member.PhoneNumber;
                 txbVkLink.Text = member.VKLink;
                 cbxCommission.SelectedValue = member.CommissionID;
-                
+
 
                 // Загрузка изображения, если оно существует
                 if (member.Photo != null)
@@ -175,6 +179,25 @@ namespace TradeUnionBureauSystem.Views.Pages
                     }
                 }
             }
+        }
+
+        private void VisibleBack()
+        {
+            if (NavigationService.CanGoBack)
+            {
+                BackButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BackButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            NavigationService.GoBack();
+
         }
     }
 }
